@@ -1,0 +1,57 @@
+.ck-emoji-grid-font-size {
+	font-size: 1.8em !important;
+}
+
+.ck.ck-reset_all,
+.ck.ck-reset_all * {
+	white-space: pre-wrap !important;
+}
+
+.ck-content {
+	min-height: 150px;
+	padding: 20px;
+}
+
+.ck.ck-editor__main>.ck-editor__editable {
+	border-bottom-right-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused) {
+	border-bottom-right-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+	border: 0 !important;
+}
+
+.ck-sticky-panel__content {
+	border-bottom: 1px solid #F5F5F5 !important;
+}
+
+.ck.ck-editor__main {
+	box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 0.5px 2px rgba(0, 0, 0, 0.16);
+	border-bottom-right-radius: 10px !important;
+	border-bottom-left-radius: 10px !important;
+	border: 0 !important;
+}
+
+.ck.ck-editor__top .ck-sticky-panel .ck-toolbar {
+	border-top-right-radius: 10px !important;
+	border-top-left-radius: 10px !important;
+	border: 0 !important;
+	box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.08), 0px 0.5px 2px rgba(0, 0, 0, 0.16);
+}
+
+.ck.ck-character-grid {
+	max-width: 100%;
+	width: 500px !important;
+	height: 200px !important;
+	overflow: auto;
+}
+
+.ck.ck-button__label {
+	word-spacing: 2px !important;
+}
+
+.ck.ck-character-info {
+	padding: 8px 14px !important;
+}

@@ -15,11 +15,13 @@ import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
 import Heading from '@ckeditor/ckeditor5-heading/src/heading';
-import Image from '@ckeditor/ckeditor5-image/src/image';
-import ImageCaption from '@ckeditor/ckeditor5-image/src/imagecaption';
-import ImageStyle from '@ckeditor/ckeditor5-image/src/imagestyle';
-import ImageToolbar from '@ckeditor/ckeditor5-image/src/imagetoolbar';
-import ImageUpload from '@ckeditor/ckeditor5-image/src/imageupload';
+import Image from './image/src/image';
+import ImageCaption from './image/src/imagecaption';
+import ImageStyle from './image/src/imagestyle';
+import ImageToolbar from './image/src/imagetoolbar';
+import ImageUpload from './image/src/imageupload';
+import ImageDelete from './image/src/imagedelete';
+import ImageType from './image/src/imagetype/src/imagetype';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -34,8 +36,9 @@ import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices'
 import HeadingButtonsUI from '@ckeditor/ckeditor5-heading/src/headingbuttonsui';
 import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 
-import ImageResizeEditing from '@ckeditor/ckeditor5-image/src/imageresize/imageresizeediting';
-import ImageResizeHandles from '@ckeditor/ckeditor5-image/src/imageresize/imageresizehandles';
+import ImageResize from './image/src/imageresize';
+import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
+import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
 
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
@@ -56,6 +59,8 @@ import EmojiObjects from "./emoji-objects";
 import EmojiPlaces from "./emoji-places";
 import EmojiSymbols from "./emoji-symbols";
 import EmojiFlags from "./emoji-flags";
+
+import { icons } from 'ckeditor5/src/core';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -91,11 +96,16 @@ InlineEditor.builtinPlugins = [
 	HeadingButtonsUI,
 	ParagraphButtonUI,
 	
+	ImageResize,
 	ImageResizeEditing,
 	ImageResizeHandles,
 
+	ImageDelete,
+
+	ImageType,
+
 	Mention,
-	
+
 	Underline,
 	Alignment,
 	Emoji,
@@ -115,8 +125,7 @@ InlineEditor.builtinPlugins = [
 InlineEditor.defaultConfig = {
 	toolbar: {
 		items: [
-			'paragraph',
-			'heading2',
+			'heading',
 			'|',
 			'bold',
 			'italic',
@@ -138,22 +147,51 @@ InlineEditor.defaultConfig = {
 			'redo'
 		]
 	},
-	heading: {
-		options: [
-			{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-			{ model: 'heading2', view: 'h2', title: 'Heading', class: 'ck-heading_heading' },
-		]
-	},
+	// heading: {
+	// 	options: [
+	// 		{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+	// 		{ model: 'heading2', view: 'h2', title: 'Heading', class: 'ck-heading_heading' },
+	// 	]
+	// },
 	image: {
+		resizeOptions: [
+			{
+				name: 'resizeImage:original',
+				value: null,
+				label: 'Original'
+			},
+			{
+				name: 'resizeImage:40',
+				value: '40',
+				label: '40%'
+			},
+			{
+				name: 'resizeImage:60',
+				value: '60',
+				label: '60%'
+			},
+			{
+				name: 'resizeImage:100',
+				value: '100',
+				label: '100%'
+			}
+		],
+		// styles: [
+		// 	{ name: 'dummyStyle', title: 'Custom dummy style.', icon: icons.cancel, isDefault: true },
+		// ],
+			// 'imageStyle:breakText',
 		toolbar: [
 			'imageStyle:inline',
-			'imageStyle:block',
-			'imageStyle:side',
+			'imageStyle:wrapText',
+			'resizeImage',
 			'|',
-			'toggleImageCaption',
-			'imageTextAlternative'
-		]
+			// 'toggleImageCaption',
+			'imageTextAlternative',
+			'imageDelete',
+			'imageType'
+		],
 	},
+
 	table: {
 		contentToolbar: [
 			'tableColumn',

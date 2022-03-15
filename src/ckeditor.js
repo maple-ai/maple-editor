@@ -14,14 +14,14 @@ import Italic from '@ckeditor/ckeditor5-basic-styles/src/italic';
 import BlockQuote from '@ckeditor/ckeditor5-block-quote/src/blockquote';
 import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
 import EasyImage from '@ckeditor/ckeditor5-easy-image/src/easyimage';
-import Heading from '@ckeditor/ckeditor5-heading/src/heading';
+import Heading from './heading/src/heading';
 import Image from './image/src/image';
 import ImageCaption from './image/src/imagecaption';
 import ImageStyle from './image/src/imagestyle';
 import ImageToolbar from './image/src/imagetoolbar';
 import ImageUpload from './image/src/imageupload';
 import ImageDelete from './image/src/imagedelete';
-import ImageType from './image/src/imagetype/src/imagetype';
+import ImageType from './image/src/imagetype';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -33,12 +33,15 @@ import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
-import HeadingButtonsUI from '@ckeditor/ckeditor5-heading/src/headingbuttonsui';
+import HeadingButtonsUI from './heading/src/headingbuttonsui';
 import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 
 import ImageResize from './image/src/imageresize';
 import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
 import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
+
+import ImageTypes from './image/src/imagetypes';
+import ImageTypesEditing from './image/src/imagetypes/imagetypesediting';
 
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
@@ -100,6 +103,9 @@ InlineEditor.builtinPlugins = [
 	ImageResizeEditing,
 	ImageResizeHandles,
 
+	ImageTypes,
+	ImageTypesEditing,
+
 	ImageDelete,
 
 	ImageType,
@@ -147,12 +153,6 @@ InlineEditor.defaultConfig = {
 			'redo'
 		]
 	},
-	// heading: {
-	// 	options: [
-	// 		{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-	// 		{ model: 'heading2', view: 'h2', title: 'Heading', class: 'ck-heading_heading' },
-	// 	]
-	// },
 	image: {
 		resizeOptions: [
 			{
@@ -176,19 +176,31 @@ InlineEditor.defaultConfig = {
 				label: '100%'
 			}
 		],
-		// styles: [
-		// 	{ name: 'dummyStyle', title: 'Custom dummy style.', icon: icons.cancel, isDefault: true },
-		// ],
-			// 'imageStyle:breakText',
+		imageTypeOptions: [
+			{
+				name: 'imageTypes:default',
+				value: null,
+				label: 'Default'
+			},
+			{
+				name: 'imageTypes:before',
+				value: 'Before',
+				label: 'Before'
+			},
+			{
+				name: 'imageTypes:After',
+				value: 'After',
+				label: 'After'
+			}
+		],
 		toolbar: [
 			'imageStyle:inline',
 			'imageStyle:wrapText',
 			'resizeImage',
 			'|',
-			// 'toggleImageCaption',
 			'imageTextAlternative',
 			'imageDelete',
-			'imageType'
+			'imageTypes'
 		],
 	},
 

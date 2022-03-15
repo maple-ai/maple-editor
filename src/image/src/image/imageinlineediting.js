@@ -21,6 +21,7 @@ import ImageTypeCommand from './imagetypecommand';
 import ImageUtils from '../imageutils';
 import {
 	getImgViewElementMatcher,
+	getCustomViewElementMatcher,
 	createImageViewElement,
 	determineImageTypeForInsertionAtSelection
 } from '../image/utils';
@@ -71,11 +72,11 @@ export default class ImageInlineEditing extends Plugin {
 		// Disallow inline images in captions (for now). This is the best spot to do that because
 		// independent packages can introduce captions (ImageCaption, TableCaption, etc.) so better this
 		// be future-proof.
-		schema.addChildCheck( ( context, childDefinition ) => {
-			if ( context.endsWith( 'caption' ) && childDefinition.name === 'imageInline' ) {
-				return false;
-			}
-		} );
+		// schema.addChildCheck( ( context, childDefinition ) => {
+		// 	if ( context.endsWith( 'caption' ) && childDefinition.name === 'imageInline' ) {
+		// 		return false;
+		// 	}
+		// } );
 
 		this._setupConversion();
 
@@ -102,6 +103,9 @@ export default class ImageInlineEditing extends Plugin {
 			.elementToElement( {
 				model: 'imageInline',
 				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'img' )
+			} ).elementToElement( {
+				model: 'imageInline',
+				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'custom' )
 			} );
 
 		conversion.for( 'editingDowncast' )
@@ -122,6 +126,12 @@ export default class ImageInlineEditing extends Plugin {
 		conversion.for( 'upcast' )
 			.elementToElement( {
 				view: getImgViewElementMatcher( editor, 'imageInline' ),
+				model: ( viewImage, { writer } ) => writer.createElement(
+					'imageInline',
+					viewImage.hasAttribute( 'src' ) ? { src: viewImage.getAttribute( 'src' ) } : null
+				)
+			} ).elementToElement( {
+				view: getCustomViewElementMatcher( editor, 'imageInline' ),
 				model: ( viewImage, { writer } ) => writer.createElement(
 					'imageInline',
 					viewImage.hasAttribute( 'src' ) ? { src: viewImage.getAttribute( 'src' ) } : null
@@ -177,33 +187,33 @@ export default class ImageInlineEditing extends Plugin {
 
 			// Convert block images into inline images only when pasting or dropping into non-empty blocks
 			// and when the block is not an object (e.g. pasting to replace another widget).
-			if ( determineImageTypeForInsertionAtSelection( model.schema, selection ) === 'imageInline' ) {
-				const writer = new UpcastWriter( editingView.document );
+			// if ( determineImageTypeForInsertionAtSelection( model.schema, selection ) === 'imageInline' ) {
+			// 	const writer = new UpcastWriter( editingView.document );
 
-				// Unwrap <figure class="image"><img .../></figure> -> <img ... />
-				// but <figure class="image"><img .../><figcaption>...</figcaption></figure> -> stays the same
-				const inlineViewImages = docFragmentChildren.map( blockViewImage => {
-					// If there's just one child, it can be either <img /> or <a><img></a>.
-					// If there are other children than <img>, this means that the block image
-					// has a caption or some other features and this kind of image should be
-					// pasted/dropped without modifications.
-					if ( blockViewImage.childCount === 1 ) {
-						// Pass the attributes which are present only in the <figure> to the <img>
-						// (e.g. the style="width:10%" attribute applied by the ImageResize plugin).
-						Array.from( blockViewImage.getAttributes() )
-							.forEach( attribute => writer.setAttribute(
-								...attribute,
-								imageUtils.findViewImgElement( blockViewImage )
-							) );
+			// 	// Unwrap <figure class="image"><img .../></figure> -> <img ... />
+			// 	// but <figure class="image"><img .../><figcaption>...</figcaption></figure> -> stays the same
+			// 	const inlineViewImages = docFragmentChildren.map( blockViewImage => {
+			// 		// If there's just one child, it can be either <img /> or <a><img></a>.
+			// 		// If there are other children than <img>, this means that the block image
+			// 		// has a caption or some other features and this kind of image should be
+			// 		// pasted/dropped without modifications.
+			// 		if ( blockViewImage.childCount === 1 ) {
+			// 			// Pass the attributes which are present only in the <figure> to the <img>
+			// 			// (e.g. the style="width:10%" attribute applied by the ImageResize plugin).
+			// 			Array.from( blockViewImage.getAttributes() )
+			// 				.forEach( attribute => writer.setAttribute(
+			// 					...attribute,
+			// 					imageUtils.findViewImgElement( blockViewImage )
+			// 				) );
 
-						return blockViewImage.getChild( 0 );
-					} else {
-						return blockViewImage;
-					}
-				} );
+			// 			return blockViewImage.getChild( 0 );
+			// 		} else {
+			// 			return blockViewImage;
+			// 		}
+			// 	} );
 
-				data.content = writer.createDocumentFragment( inlineViewImages );
-			}
+			// 	data.content = writer.createDocumentFragment( inlineViewImages );
+			// }
 		} );
 	}
 }

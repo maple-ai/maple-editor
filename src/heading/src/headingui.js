@@ -4,7 +4,7 @@
  */
 
 /**
- * @module imagetype/imagetypeui
+ * @module heading/headingui
  */
 
 import { Plugin } from 'ckeditor5/src/core';
@@ -13,19 +13,19 @@ import { Collection } from 'ckeditor5/src/utils';
 
 import { getLocalizedOptions } from './utils';
 
-import '../theme/imagetype.css';
+import '../theme/heading.css';
 
 /**
- * The imagetypes UI feature. It introduces the `imagetypes` dropdown.
+ * The headings UI feature. It introduces the `headings` dropdown.
  *
  * @extends module:core/plugin~Plugin
  */
-export default class ImageTypeUI extends Plugin {
+export default class HeadingUI extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'ImageTypeUI';
+		return 'HeadingUI';
 	}
 
 	/**
@@ -35,18 +35,18 @@ export default class ImageTypeUI extends Plugin {
 		const editor = this.editor;
 		const t = editor.t;
 		const options = getLocalizedOptions( editor );
-		const defaultTitle = t( 'Default' );
-		const dropdownTooltip = t( 'Choose Image Type' );
+		const defaultTitle = t( 'Choose heading' );
+		const dropdownTooltip = t( 'Heading' );
 
 		// Register UI component.
-		editor.ui.componentFactory.add( 'imagetype', locale => {
+		editor.ui.componentFactory.add( 'heading', locale => {
 			const titles = {};
 			const itemDefinitions = new Collection();
 
-			const imagetypeCommand = editor.commands.get( 'imagetype' );
+			const headingCommand = editor.commands.get( 'heading' );
 			const paragraphCommand = editor.commands.get( 'paragraph' );
 
-			const commands = [ imagetypeCommand ];
+			const commands = [ headingCommand ];
 
 			for ( const option of options ) {
 				const def = {
@@ -63,9 +63,9 @@ export default class ImageTypeUI extends Plugin {
 					def.model.set( 'commandName', 'paragraph' );
 					commands.push( paragraphCommand );
 				} else {
-					def.model.bind( 'isOn' ).to( imagetypeCommand, 'value', value => value === option.model );
+					def.model.bind( 'isOn' ).to( headingCommand, 'value', value => value === option.model );
 					def.model.set( {
-						commandName: 'imagetype',
+						commandName: 'heading',
 						commandValue: option.model
 					} );
 				}
@@ -88,16 +88,16 @@ export default class ImageTypeUI extends Plugin {
 			dropdownView.extendTemplate( {
 				attributes: {
 					class: [
-						'ck-imagetype-dropdown'
+						'ck-heading-dropdown'
 					]
 				}
 			} );
 
 			dropdownView.bind( 'isEnabled' ).toMany( commands, 'isEnabled', ( ...areEnabled ) => {
-				return true;
+				return areEnabled.some( isEnabled => isEnabled );
 			} );
 
-			dropdownView.buttonView.bind( 'label' ).to( imagetypeCommand, 'value', paragraphCommand, 'value', ( value, para ) => {
+			dropdownView.buttonView.bind( 'label' ).to( headingCommand, 'value', paragraphCommand, 'value', ( value, para ) => {
 				const whichModel = value || para && 'paragraph';
 				// If none of the commands is active, display default title.
 				return titles[ whichModel ] ? titles[ whichModel ] : defaultTitle;

@@ -18,7 +18,9 @@ const RESIZABLE_IMAGES_CSS_SELECTOR =
 	'figure.image.ck-widget > a > img,' +
 	'figure.image.ck-widget > a > picture > img,' +
 	'span.image-inline.ck-widget > img,' +
-	'span.image-inline.ck-widget > picture > img';
+	'span.image-inline.ck-widget > picture > img' +
+	'div.image-inline.ck-widget > img,' +
+	'div.image-inline.ck-widget > picture > img';
 
 const IMAGE_WIDGETS_CLASSES_MATCH_REGEXP = /(image|image-inline)/;
 

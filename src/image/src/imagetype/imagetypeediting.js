@@ -4,28 +4,28 @@
  */
 
 /**
- * @module image/imagecaption/imagecaptionediting
+ * @module image/imagetype/imagetypeediting
  */
 
 import { Plugin } from 'ckeditor5/src/core';
 import { Element, enablePlaceholder } from 'ckeditor5/src/engine';
 import { toWidgetEditable } from 'ckeditor5/src/widget';
 
-import ToggleImageCaptionCommand from './toggleimagecaptioncommand';
+import ToggleImageTypeCommand from './toggleimagetypecommand';
 
 import ImageUtils from '../imageutils';
-import { getCaptionFromImageModelElement, matchImageCaptionViewElement } from './utils';
+import { getCaptionFromImageModelElement, matchImageTypeViewElement } from './utils';
 
 /**
  * The image caption engine plugin. It is responsible for:
  *
  * * registering converters for the caption element,
  * * registering converters for the caption model attribute,
- * * registering the {@link module:image/imagecaption/toggleimagecaptioncommand~ToggleImageCaptionCommand `toggleImageCaption`} command.
+ * * registering the {@link module:image/imagetype/toggleimagetypecommand~ToggleImageTypeCommand `toggleImageType`} command.
  *
  * @extends module:core/plugin~Plugin
  */
-export default class ImageCaptionEditing extends Plugin {
+export default class ImageTypeEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -37,7 +37,7 @@ export default class ImageCaptionEditing extends Plugin {
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'ImageCaptionEditing';
+		return 'ImageTypeEditing';
 	}
 
 	/**
@@ -77,7 +77,7 @@ export default class ImageCaptionEditing extends Plugin {
 			} );
 		}
 
-		editor.commands.add( 'toggleImageCaption', new ToggleImageCaptionCommand( this.editor ) );
+		editor.commands.add( 'toggleImageType', new ToggleImageTypeCommand( this.editor ) );
 
 		this._setupConversion();
 		this._setupImageTypeCommandsIntegration();
@@ -97,7 +97,7 @@ export default class ImageCaptionEditing extends Plugin {
 
 		// View -> model converter for the data pipeline.
 		editor.conversion.for( 'upcast' ).elementToElement( {
-			view: element => matchImageCaptionViewElement( imageUtils, element ),
+			view: element => matchImageTypeViewElement( imageUtils, element ),
 			model: 'caption'
 		} );
 
@@ -106,10 +106,11 @@ export default class ImageCaptionEditing extends Plugin {
 			model: 'caption',
 			view: ( modelElement, { writer } ) => {
 				if ( !imageUtils.isBlockImage( modelElement.parent ) ) {
-					return null;
+					console.log("IS RETURN");
+					// return null;
 				}
 
-				return writer.createContainerElement( 'figcaption' );
+				return writer.createContainerElement( 'figtype' );
 			}
 		} );
 
@@ -118,20 +119,21 @@ export default class ImageCaptionEditing extends Plugin {
 			model: 'caption',
 			view: ( modelElement, { writer } ) => {
 				if ( !imageUtils.isBlockImage( modelElement.parent ) ) {
-					return null;
+					console.log("IS RETURN2");
+					// return null;
 				}
 
-				const figcaptionElement = writer.createEditableElement( 'figcaption' );
-				writer.setCustomProperty( 'imageCaption', true, figcaptionElement );
+				const figtypeElement = writer.createEditableElement( 'figtype' );
+				writer.setCustomProperty( 'imageCaption', true, figtypeElement );
 
 				enablePlaceholder( {
 					view,
-					element: figcaptionElement,
+					element: figtypeElement,
 					text: t( 'Enter image caption' ),
 					keepOnFocus: true
 				} );
 
-				return toWidgetEditable( figcaptionElement, writer );
+				return toWidgetEditable( figtypeElement, writer );
 			}
 		} );
 
@@ -245,8 +247,8 @@ export default class ImageCaptionEditing extends Plugin {
 	}
 }
 
-// Creates a mapper callback that reverses the order of `<img>` and `<figcaption>` in the image.
-// Without it, `<figcaption>` would precede the `<img>` in the conversion.
+// Creates a mapper callback that reverses the order of `<img>` and `<figtype>` in the image.
+// Without it, `<figtype>` would precede the `<img>` in the conversion.
 //
 // <imageBlock>^</imageBlock> -> <figure><img>^<caption></caption></figure>
 //
@@ -258,14 +260,17 @@ function mapModelPositionToView( editingView ) {
 		const modelPosition = data.modelPosition;
 		const parent = modelPosition.parent;
 
-		if ( !parent.is( 'element', 'imageBlock' ) ) {
-			return;
-		}
+		// if ( !parent.is( 'element', 'imageBlock' ) ) {
+		// 	return;
+		// }
 
-		const viewElement = data.mapper.toViewElement( parent );
+		return;
+		// const viewElement = data.mapper.toViewElement( parent );
+		// console.log("viewElement", viewElement);
+		// console.log("data.viewPosition", data);
 
-		// The "img" element is inserted by ImageBlockEditing during the downcast conversion via
-		// an explicit view position so the "0" position does not need any mapping.
-		data.viewPosition = editingView.createPositionAt( viewElement, modelPosition.offset + 1 );
+		// // // The "img" element is inserted by ImageBlockEditing during the downcast conversion via
+		// // an explicit view position so the "0" position does not need any mapping.
+		// data.viewPosition = editingView.createPositionAt( viewElement, modelPosition.offset + 1 );
 	};
 }

@@ -11,14 +11,12 @@
  import ImageTypeEditing from './imagetype/imagetypeediting';
  import ImageTypeUI from './imagetype/imagetypeui';
  
+ import '../theme/imagetype.css';
+ 
  /**
-  * The image text alternative plugin.
+  * The image caption plugin.
   *
-  * For a detailed overview, check the {@glink features/images/images-styles image styles} documentation.
-  *
-  * This is a "glue" plugin which loads the
-  *  {@link module:image/imagetype/imagetypeediting~ImageTypeEditing}
-  * and {@link module:image/imagetype/imagetypeui~ImageTypeUI} plugins.
+  * For a detailed overview, check the {@glink features/images/images-captions image caption} documentation.
   *
   * @extends module:core/plugin~Plugin
   */

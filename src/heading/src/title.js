@@ -4,7 +4,7 @@
  */
 
 /**
- * @module imagetype/title
+ * @module heading/title
  */
 
 import { Plugin } from 'ckeditor5/src/core';
@@ -21,7 +21,7 @@ import {
 // A list of element names that should be treated by the Title plugin as title-like.
 // This means that an element of a type from this list will be changed to a title element
 // when it is the first element in the root.
-const titleLikeElements = new Set( [ 'paragraph', 'default', 'before' ] );
+const titleLikeElements = new Set( [ 'paragraph', 'heading1', 'heading2' ] );
 
 /**
  * The Title plugin.
@@ -563,15 +563,15 @@ function shouldRemoveLastParagraph( placeholder, root ) {
 }
 
 /**
- * The configuration of the {@link module:imagetype/title~Title title feature}.
+ * The configuration of the {@link module:heading/title~Title title feature}.
  *
- * Read more in {@link module:imagetype/title~TitleConfig}.
+ * Read more in {@link module:heading/title~TitleConfig}.
  *
- * @member {module:imagetype/title~TitleConfig} module:core/editor/editorconfig~EditorConfig#title
+ * @member {module:heading/title~TitleConfig} module:core/editor/editorconfig~EditorConfig#title
  */
 
 /**
- * The configuration of the {@link module:imagetype/title~Title title feature}.
+ * The configuration of the {@link module:heading/title~Title title feature}.
  *
  *		ClassicEditor
  *			.create( document.querySelector( '#editor' ), {
@@ -592,7 +592,7 @@ function shouldRemoveLastParagraph( placeholder, root ) {
 /**
  * Defines a custom value of the placeholder for the title field.
  *
- * Read more in {@link module:imagetype/title~TitleConfig}.
+ * Read more in {@link module:heading/title~TitleConfig}.
  *
- * @member {String} module:imagetype/title~TitleConfig#placeholder
+ * @member {String} module:heading/title~TitleConfig#placeholder
  */

@@ -4,29 +4,29 @@
  */
 
 /**
- * @module imagetype/utils
+ * @module heading/utils
  */
 
 /**
- * Returns imagetype options as defined in `config.imagetype.options` but processed to consider
- * the editor localization, i.e. to display {@link module:imagetype/imagetype~ImageTypeOption}
+ * Returns heading options as defined in `config.heading.options` but processed to consider
+ * the editor localization, i.e. to display {@link module:heading/heading~HeadingOption}
  * in the correct language.
  *
  * Note: The reason behind this method is that there is no way to use {@link module:utils/locale~Locale#t}
  * when the user configuration is defined because the editor does not exist yet.
  *
  * @param {module:core/editor/editor~Editor} editor
- * @returns {Array.<module:imagetype/imagetype~ImageTypeOption>}.
+ * @returns {Array.<module:heading/heading~HeadingOption>}.
  */
 export function getLocalizedOptions( editor ) {
 	const t = editor.t;
 	const localizedTitles = {
-		'Default': t( 'Default' ),
-		'Before': t( 'Before' ),
-		'After': t( 'After' )
+		Paragraph: t( 'Body Text' ),
+		'Heading 1': t( 'Heading 1' ),
+		'Heading 2': t( 'Heading 2' )
 	};
 
-	return editor.config.get( 'imagetype.options' ).map( option => {
+	return editor.config.get( 'heading.options' ).map( option => {
 		const title = localizedTitles[ option.title ];
 
 		if ( title && title != option.title ) {

@@ -4,30 +4,30 @@
  */
 
 /**
- * @module imagetype/imagetypeediting
+ * @module heading/headingediting
  */
 
 import { Plugin } from 'ckeditor5/src/core';
 import { Paragraph } from 'ckeditor5/src/paragraph';
 import { priorities } from 'ckeditor5/src/utils';
 
-import ImageTypeCommand from './imagetypecommand';
+import HeadingCommand from './headingcommand';
 
 const defaultModelElement = 'paragraph';
 
 /**
- * The imagetypes engine feature. It handles switching between block formats &ndash; imagetypes and paragraph.
- * This class represents the engine part of the imagetype feature. See also {@link module:imagetype/imagetype~ImageType}.
- * It introduces `default`-`imagetypeN` commands which allow to convert paragraphs into imagetypes.
+ * The headings engine feature. It handles switching between block formats &ndash; headings and paragraph.
+ * This class represents the engine part of the heading feature. See also {@link module:heading/heading~Heading}.
+ * It introduces `heading1`-`headingN` commands which allow to convert paragraphs into headings.
  *
  * @extends module:core/plugin~Plugin
  */
-export default class ImageTypeEditing extends Plugin {
+export default class HeadingEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'ImageTypeEditing';
+		return 'HeadingEditing';
 	}
 
 	/**
@@ -36,11 +36,11 @@ export default class ImageTypeEditing extends Plugin {
 	constructor( editor ) {
 		super( editor );
 
-		editor.config.define( 'imagetype', {
+		editor.config.define( 'heading', {
 			options: [
-				{ model: 'default', view: 'h2', title: 'Default', class: 'ck-imagetype_default' },
-				{ model: 'before', view: 'h3', title: 'Before', class: 'ck-imagetype_before' },
-				{ model: 'after', view: 'h4', title: 'After', class: 'ck-imagetype_after' }
+				{ model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+				{ model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+				{ model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' },
 			]
 		} );
 	}
@@ -57,7 +57,7 @@ export default class ImageTypeEditing extends Plugin {
 	 */
 	init() {
 		const editor = this.editor;
-		const options = editor.config.get( 'imagetype.options' );
+		const options = editor.config.get( 'heading.options' );
 
 		const modelElements = [];
 
@@ -77,8 +77,8 @@ export default class ImageTypeEditing extends Plugin {
 
 		this._addDefaultH1Conversion( editor );
 
-		// Register the imagetype command for this option.
-		editor.commands.add( 'imagetype', new ImageTypeCommand( editor, modelElements ) );
+		// Register the heading command for this option.
+		editor.commands.add( 'heading', new HeadingCommand( editor, modelElements ) );
 	}
 
 	/**
@@ -86,17 +86,17 @@ export default class ImageTypeEditing extends Plugin {
 	 */
 	afterInit() {
 		// If the enter command is added to the editor, alter its behavior.
-		// Enter at the end of a imagetype element should create a paragraph.
+		// Enter at the end of a heading element should create a paragraph.
 		const editor = this.editor;
 		const enterCommand = editor.commands.get( 'enter' );
-		const options = editor.config.get( 'imagetype.options' );
+		const options = editor.config.get( 'heading.options' );
 
 		if ( enterCommand ) {
 			this.listenTo( enterCommand, 'afterExecute', ( evt, data ) => {
 				const positionParent = editor.model.document.selection.getFirstPosition().parent;
-				const isImageType = options.some( option => positionParent.is( 'element', option.model ) );
+				const isHeading = options.some( option => positionParent.is( 'element', option.model ) );
 
-				if ( isImageType && !positionParent.is( 'element', defaultModelElement ) && positionParent.childCount === 0 ) {
+				if ( isHeading && !positionParent.is( 'element', defaultModelElement ) && positionParent.childCount === 0 ) {
 					data.writer.rename( positionParent, defaultModelElement );
 				}
 			} );
@@ -104,14 +104,14 @@ export default class ImageTypeEditing extends Plugin {
 	}
 
 	/**
-	 * Adds default conversion for `h1` -> `default` with a low priority.
+	 * Adds default conversion for `h1` -> `heading1` with a low priority.
 	 *
 	 * @private
 	 * @param {module:core/editor/editor~Editor} editor Editor instance on which to add the `h1` conversion.
 	 */
 	_addDefaultH1Conversion( editor ) {
 		editor.conversion.for( 'upcast' ).elementToElement( {
-			model: 'default',
+			model: 'heading1',
 			view: 'h1',
 			// With a `low` priority, `paragraph` plugin autoparagraphing mechanism is executed. Make sure
 			// this listener is called before it. If not, `h1` will be transformed into a paragraph.

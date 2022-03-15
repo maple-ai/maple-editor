@@ -72,6 +72,31 @@ export function getImgViewElementMatcher( editor, matchImageType ) {
 	};
 }
 
+export function getCustomViewElementMatcher( editor, matchImageType ) {
+	if ( editor.plugins.has( 'ImageInlineEditing' ) !== editor.plugins.has( 'ImageBlockEditing' ) ) {
+		return { name: 'custom' };
+	}
+
+	const imageUtils = editor.plugins.get( 'ImageUtils' );
+
+	return element => {
+		// Check if view element is an `img`.
+		if ( !imageUtils.isInlineImageView( element ) ) {
+			return null;
+		}
+
+		// The <img> can be standalone, wrapped in <figure>...</figure> (ImageBlock plugin) or
+		// wrapped in <figure><a>...</a></figure> (LinkImage plugin).
+		const imageType = element.findAncestor( imageUtils.isBlockImageView ) ? 'imageBlock' : 'imageInline';
+
+		if ( imageType !== matchImageType ) {
+			return null;
+		}
+
+		return { name: true };
+	};
+}
+
 /**
  * Considering the current model selection, it returns the name of the model image element
  * (`'imageBlock'` or `'imageInline'`) that will make most sense from the UX perspective if a new

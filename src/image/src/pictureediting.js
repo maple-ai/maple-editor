@@ -92,7 +92,7 @@ export default class PictureEditing extends Plugin {
 				allowAttributes: [ 'sources' ]
 			} );
 		}
-
+		
 		if ( editor.plugins.has( 'ImageInlineEditing' ) ) {
 			editor.model.schema.extend( 'imageInline', {
 				allowAttributes: [ 'sources' ]

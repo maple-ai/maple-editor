@@ -1,0 +1,123 @@
+/*
+ * Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+.ck-content {
+	& .file {
+		display: table;
+		clear: both;
+		text-align: center;
+
+		/* Make sure there is some space between the content and the file. Center file by default. */
+		/* The first value should be equal to --ck-spacing-large variable if used in the editor context
+	 	to avoid the content jumping (See https://github.com/ckeditor/ckeditor5/issues/9825). */
+		margin: 0.9em auto;
+
+		/* Make sure the caption will be displayed properly (See: https://github.com/ckeditor/ckeditor5/issues/1870). */
+		min-width: 50px;
+
+		& iframe {
+			/* Prevent unnecessary margins caused by line-height (see #44). */
+			display: block;
+
+			/* Center the file if its width is smaller than the content's width. */
+			margin: 0 auto;
+
+			/* Make sure the file never exceeds the size of the parent container (ckeditor/ckeditor5-ui#67). */
+			max-width: 100%;
+
+			/* Make sure the file is never smaller than the parent container (See: https://github.com/ckeditor/ckeditor5/issues/9300). */
+			min-width: 100%
+		}
+	}
+
+	& .file-inline {
+		/*
+		 * Normally, the .file-inline would have "display: inline-block" and "iframe { width: 100% }" (to follow the wrapper while resizing).
+		 * Unfortunately, together with "srcset", it gets automatically stretched up to the width of the editing root.
+		 * This strange behavior does not happen with inline-flex.
+		 */
+		display: inline-flex;
+		/* padding: 20px; */
+		/* border: 1px solid #000; */
+		/* border-radius: 8px; */
+
+		/* While being resized, don't allow the file to exceed the width of the editing root. */
+		width: 100%;
+		padding: 20px;
+
+		/* This is required by Safari to resize files in a sensible way. Without this, the browser breaks the ratio. */
+		align-items: flex-start;
+
+		/* When the picture is present it must act as a flex container to let the iframe resize properly */
+		& picture {
+			display: flex;
+		}
+
+		/* When the picture is present, it must act like a resizable iframe. */
+		& picture,
+		& iframe {
+			/* This is necessary for the iframe to span the entire .file-inline wrapper and to resize properly. */
+			flex-grow: 1;
+			flex-shrink: 1;
+
+			/* Prevents overflowing the editing root boundaries when an inline file is very wide. */
+			max-width: 100%;
+			min-height: 400px;
+			height: 100%;
+		}
+	}
+}
+
+.ck.ck-editor__editable {
+
+	/*
+	 * Inhertit the content styles padding of the <figcaption> in case the integration overrides `text-align: center`
+	 * of `.file` (e.g. to the left/right). This ensures the placeholder stays at the padding just like the native
+	 * caret does, and not at the edge of <figcaption>.
+	 */
+	& .file>figcaption.ck-placeholder::before {
+		padding-left: inherit;
+		padding-right: inherit;
+
+		/*
+		 * Make sure the file caption placeholder doesn't overflow the placeholder area.
+		 * See https://github.com/ckeditor/ckeditor5/issues/9162.
+		 */
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
+
+	/*
+	 * Make sure the selected inline file always stays on top of its siblings.
+	 * See https://github.com/ckeditor/ckeditor5/issues/9108.
+	 */
+	& .file.ck-widget_selected {
+		z-index: 1;
+	}
+
+	& .file-inline.ck-widget_selected {
+		z-index: 1;
+
+		/*
+		 * Make sure the native browser selection style is not displayed.
+		 * Inline file widgets have their own styles for the selected state and
+		 * leaving this up to the browser is asking for a visual collision.
+		 */
+		& ::selection {
+			display: none;
+		}
+	}
+
+	/* The inline file nested in the table should have its original size if not resized.
+	See https://github.com/ckeditor/ckeditor5/issues/9117. */
+	& td,
+	& th {
+		& .file-inline iframe {
+			max-width: none;
+		}
+	}
+}

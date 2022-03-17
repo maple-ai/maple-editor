@@ -79,7 +79,9 @@ export default class ImageUtils extends Plugin {
 	 * it will be determined automatically depending of editor config or place of the insertion.
 	 * @return {module:engine/view/element~Element|null} The inserted model image element.
 	 */
+
 	insertImage( attributes = {}, selectable = null, imageType = null ) {
+		console.log("insertImage");
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -100,6 +102,8 @@ export default class ImageUtils extends Plugin {
 			}
 		}
 
+		console.log("attributes", attributes);
+		
 		return model.change( writer => {
 			const imageElement = writer.createElement( imageType, attributes );
 
@@ -314,11 +318,10 @@ function determineImageTypeForInsertion( editor, selectable, imageType ) {
 	let configImageInsertType = editor.config.get( 'image.insert.type' );
 	configImageInsertType = 'inline';
 
-
+	console.log("determineImageTypeForInsertion");
 	if ( !editor.plugins.has( 'ImageInlineEditing' ) ) {
 		return 'imageBlock';
 	}
-
 
 	if ( !editor.plugins.has( 'ImageBlockEditing' ) ) {
 		return 'imageInline';

@@ -60,7 +60,7 @@ export default class ImageStyleEditing extends Plugin {
 		this.normalizedStyles = normalizeStyles( {
 			configuredStyles: editor.config.get( 'image.styles' ),
 			isBlockPluginLoaded,
-			isInlinePluginLoaded
+			isInlinePluginLoaded,
 		} );
 
 		this._setupConversion( isBlockPluginLoaded, isInlinePluginLoaded );

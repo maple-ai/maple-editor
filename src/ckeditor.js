@@ -22,6 +22,13 @@ import ImageToolbar from './image/src/imagetoolbar';
 import ImageUpload from './image/src/imageupload';
 import ImageDelete from './image/src/imagedelete';
 import ImageType from './image/src/imagetype';
+
+import File from './file/src/file';
+import FileToolbar from './file/src/filetoolbar';
+import FileUpload from './file/src/fileupload';
+import FileDelete from './file/src/filedelete';
+
+// import FileUpload from './image/src/fileupload';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
 import List from '@ckeditor/ckeditor5-list/src/list';
@@ -83,7 +90,15 @@ InlineEditor.builtinPlugins = [
 	ImageCaption,
 	ImageStyle,
 	ImageToolbar,
+
 	ImageUpload,
+
+	File,
+	FileToolbar,
+
+	FileUpload,
+	FileDelete,
+
 	Indent,
 	Link,
 	List,
@@ -145,6 +160,7 @@ InlineEditor.defaultConfig = {
 			'|',
 			'blockQuote',
 			'uploadImage',
+			'uploadFile',
 			'mediaEmbed',
 			'emoji',
 			'link',
@@ -152,6 +168,11 @@ InlineEditor.defaultConfig = {
 			'undo',
 			'redo'
 		]
+	},
+	file: {
+		toolbar: [
+			'fileDelete',
+		],
 	},
 	image: {
 		resizeOptions: [

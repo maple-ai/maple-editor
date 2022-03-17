@@ -1,0 +1,113 @@
+/*
+ * Copyright (c) 2003-2022, CKSource Holding sp. z o.o. All rights reserved.
+ * For licensing, see LICENSE.md or https://ckeditor.com/legal/ckeditor-oss-license
+ */
+
+:root {
+	--ck-file-style-spacing: 1.5em;
+	--ck-inline-file-style-spacing: calc(var(--ck-file-style-spacing) / 2);
+}
+
+.ck-content {
+
+	/* Provides a minimal side margin for the left and right aligned files, so that the user has a visual feedback
+	confirming successful application of the style if file width exceeds the editor's size.
+	See https://github.com/ckeditor/ckeditor5/issues/9342 */
+	& .file-style-block-align-left,
+	& .file-style-block-align-right {
+		max-width: calc(100% - var(--ck-file-style-spacing));
+	}
+
+	/* Allows displaying multiple floating files in the same line.
+	See https://github.com/ckeditor/ckeditor5/issues/9183#issuecomment-804988132 */
+	& .file-style-align-left,
+	& .file-style-align-right {
+		clear: none;
+	}
+
+	& .file-style-side {
+		float: right;
+		margin-left: var(--ck-file-style-spacing);
+		max-width: 50%;
+	}
+
+	& .file-style-align-left {
+		float: left;
+		margin-right: var(--ck-file-style-spacing);
+	}
+
+	& .file-style-align-center {
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	& .file-style-align-right {
+		float: right;
+		margin-left: var(--ck-file-style-spacing);
+	}
+
+	& .file-style-block-align-right {
+		margin-right: 0;
+		margin-left: auto;
+	}
+
+	& .file-style-block-align-left {
+		margin-left: 0;
+		margin-right: auto;
+	}
+
+	/* Simulates margin collapsing with the preceding paragraph, which does not work for the floating elements. */
+	& p+.file-style-align-left,
+	& p+.file-style-align-right,
+	& p+.file-style-side {
+		margin-top: 0;
+	}
+
+	& .file-inline {
+
+		&.file-style-align-left,
+		&.file-style-align-right {
+			margin-top: var(--ck-inline-file-style-spacing);
+			margin-bottom: var(--ck-inline-file-style-spacing);
+		}
+
+		&.file-style-align-left {
+			margin-right: var(--ck-inline-file-style-spacing);
+		}
+
+		&.file-style-align-right {
+			margin-left: var(--ck-inline-file-style-spacing);
+		}
+	}
+}
+
+.ck.ck-splitbutton {
+
+	/* The button should display as a regular drop-down if the action button
+	is forced to fire the same action as the arrow button. */
+	&.ck-splitbutton_flatten {
+
+		&:hover,
+		&.ck-splitbutton_open {
+
+			&>.ck-splitbutton__action:not(.ck-disabled),
+			&>.ck-splitbutton__arrow:not(.ck-disabled),
+			&>.ck-splitbutton__arrow:not(.ck-disabled):not(:hover) {
+				background-color: var(--ck-color-button-on-background);
+
+				&::after {
+					display: none;
+				}
+			}
+		}
+
+		&.ck-splitbutton_open:hover {
+
+			&>.ck-splitbutton__action:not(.ck-disabled),
+			&>.ck-splitbutton__arrow:not(.ck-disabled),
+			&>.ck-splitbutton__arrow:not(.ck-disabled):not(:hover) {
+				background-color: var(--ck-color-button-on-hover-background);
+			}
+		}
+	}
+}

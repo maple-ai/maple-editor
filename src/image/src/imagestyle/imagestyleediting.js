@@ -101,8 +101,8 @@ export default class ImageStyleEditing extends Plugin {
 		if ( isInlinePluginLoaded ) {
 			schema.extend( 'imageInline', { allowAttributes: 'imageStyle' } );
 
-			// Converter for the img element from view to model.
-			editor.data.upcastDispatcher.on( 'element:img', viewToModelConverter, { priority: 'low' } );
+			// Converter for the iframe element from view to model.
+			editor.data.upcastDispatcher.on( 'element:iframe', viewToModelConverter, { priority: 'low' } );
 		}
 	}
 

@@ -247,10 +247,10 @@ export default class ImageTypeEditing extends Plugin {
 	}
 }
 
-// Creates a mapper callback that reverses the order of `<img>` and `<figtype>` in the image.
-// Without it, `<figtype>` would precede the `<img>` in the conversion.
+// Creates a mapper callback that reverses the order of `<iframe>` and `<figtype>` in the image.
+// Without it, `<figtype>` would precede the `<iframe>` in the conversion.
 //
-// <imageBlock>^</imageBlock> -> <figure><img>^<caption></caption></figure>
+// <imageBlock>^</imageBlock> -> <figure><iframe>^<caption></caption></figure>
 //
 // @private
 // @param {module:engine/view/view~View} editingView
@@ -269,7 +269,7 @@ function mapModelPositionToView( editingView ) {
 		// console.log("viewElement", viewElement);
 		// console.log("data.viewPosition", data);
 
-		// // // The "img" element is inserted by ImageBlockEditing during the downcast conversion via
+		// // // The "iframe" element is inserted by ImageBlockEditing during the downcast conversion via
 		// // an explicit view position so the "0" position does not need any mapping.
 		// data.viewPosition = editingView.createPositionAt( viewElement, modelPosition.offset + 1 );
 	};

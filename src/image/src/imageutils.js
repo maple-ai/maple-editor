@@ -43,7 +43,7 @@ export default class ImageUtils extends Plugin {
 	 * @returns {Boolean}
 	 */
 	isInlineImageView( element ) {
-		return !!element && element.is( 'element', 'img' );
+		return !!element && element.is( 'element', 'iframe' );
 	}
 
 	/**
@@ -194,8 +194,8 @@ export default class ImageUtils extends Plugin {
 		writer.setCustomProperty( 'image', true, viewElement );
 
 		const labelCreator = () => {
-			const imgElement = this.findViewImgElement( viewElement );
-			const altText = imgElement.getAttribute( 'alt' );
+			const iframeElement = this.findViewImgElement( viewElement );
+			const altText = iframeElement.getAttribute( 'alt' );
 
 			return altText ? `${ altText } ${ label }` : label;
 		};
@@ -235,9 +235,9 @@ export default class ImageUtils extends Plugin {
 	}
 
 	/**
-	 * Get the view `<img>` from another view element, e.g. a widget (`<figure class="image">`), a link (`<a>`).
+	 * Get the view `<iframe>` from another view element, e.g. a widget (`<figure class="image">`), a link (`<a>`).
 	 *
-	 * The `<img>` can be located deep in other elements, so this helper performs a deep tree search.
+	 * The `<iframe>` can be located deep in other elements, so this helper performs a deep tree search.
 	 *
 	 * @param {module:engine/view/element~Element} figureView
 	 * @returns {module:engine/view/element~Element}

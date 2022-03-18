@@ -245,10 +245,10 @@ export default class ImageCaptionEditing extends Plugin {
 	}
 }
 
-// Creates a mapper callback that reverses the order of `<img>` and `<figcaption>` in the image.
-// Without it, `<figcaption>` would precede the `<img>` in the conversion.
+// Creates a mapper callback that reverses the order of `<iframe>` and `<figcaption>` in the image.
+// Without it, `<figcaption>` would precede the `<iframe>` in the conversion.
 //
-// <imageBlock>^</imageBlock> -> <figure><img>^<caption></caption></figure>
+// <imageBlock>^</imageBlock> -> <figure><iframe>^<caption></caption></figure>
 //
 // @private
 // @param {module:engine/view/view~View} editingView
@@ -264,7 +264,7 @@ function mapModelPositionToView( editingView ) {
 
 		const viewElement = data.mapper.toViewElement( parent );
 
-		// The "img" element is inserted by ImageBlockEditing during the downcast conversion via
+		// The "iframe" element is inserted by ImageBlockEditing during the downcast conversion via
 		// an explicit view position so the "0" position does not need any mapping.
 		data.viewPosition = editingView.createPositionAt( viewElement, modelPosition.offset + 1 );
 	};

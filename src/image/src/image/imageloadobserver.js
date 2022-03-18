@@ -55,7 +55,7 @@ export default class ImageLoadObserver extends Observer {
 }
 
 /**
- * Fired when an <img/> DOM element has been loaded in the DOM root.
+ * Fired when an <iframe/> DOM element has been loaded in the DOM root.
  *
  * Introduced by {@link module:image/image/imageloadobserver~ImageLoadObserver}.
  *

@@ -146,7 +146,7 @@ export default class ImageBlockEditing extends Plugin {
 			const docFragmentChildren = Array.from( data.content.getChildren() );
 			let modelRange;
 
-			// Make sure only <img> elements are dropped or pasted. Otherwise, if there some other HTML
+			// Make sure only <iframe> elements are dropped or pasted. Otherwise, if there some other HTML
 			// mixed up, this should be handled as a regular paste.
 			if ( !docFragmentChildren.every( imageUtils.isInlineImageView ) ) {
 				return;
@@ -170,7 +170,7 @@ export default class ImageBlockEditing extends Plugin {
 			if ( determineImageTypeForInsertionAtSelection( model.schema, selection ) === 'imageBlock' ) {
 				const writer = new UpcastWriter( editingView.document );
 
-				// Wrap <img ... /> -> <figure class="image"><img .../></figure>
+				// Wrap <iframe ... /> -> <figure class="image"><iframe .../></figure>
 				const blockViewImages = docFragmentChildren.map(
 					inlineViewImage => writer.createElement( 'figure', { class: 'image' }, inlineViewImage )
 				);

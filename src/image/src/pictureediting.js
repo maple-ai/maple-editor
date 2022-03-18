@@ -28,7 +28,7 @@ import {
  *				<source media="(min-width: 800px)" srcset="image-large.webp" type="image/webp">
  *				<source media="(max-width: 800px)" srcset="image-small.webp" type="image/webp">
  *				<!-- Other sources as specified in the "sources" model attribute... -->
- *				<img src="image.png" alt="An image using picture" />
+ *				<iframe src="image.png" alt="An image using picture" />
  *			</picture>
  *		</p>
  *
@@ -38,7 +38,7 @@ import {
  *				<source media="(min-width: 800px)" srcset="image-large.webp" type="image/webp">
  *				<source media="(max-width: 800px)" srcset="image-small.webp" type="image/webp">
  *				<!-- Other sources as specified in the "sources" model attribute... -->
- *				<img src="image.png" alt="An image using picture" />
+ *				<iframe src="image.png" alt="An image using picture" />
  *			</picture>
  *			<figcaption>Caption of the image</figcaption>
  *		</figure>

@@ -134,7 +134,7 @@ export default class ImageTypesEditing extends Plugin {
 		editor.conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: imageType === 'imageBlock' ? 'figure' : 'img',
+					name: imageType === 'imageBlock' ? 'figure' : 'iframe',
 					styles: {
 						type: /.+/
 					}

@@ -103,7 +103,7 @@ export default class ImageInlineEditing extends Plugin {
 		conversion.for( 'dataDowncast' )
 			.elementToElement( {
 				model: 'imageInline',
-				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'img' )
+				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'iframe' )
 			} ).elementToElement( {
 				model: 'imageInline',
 				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'custom' )
@@ -191,15 +191,15 @@ export default class ImageInlineEditing extends Plugin {
 			// if ( determineImageTypeForInsertionAtSelection( model.schema, selection ) === 'imageInline' ) {
 			// 	const writer = new UpcastWriter( editingView.document );
 
-			// 	// Unwrap <figure class="image"><img .../></figure> -> <img ... />
-			// 	// but <figure class="image"><img .../><figcaption>...</figcaption></figure> -> stays the same
+			// 	// Unwrap <figure class="image"><iframe .../></figure> -> <iframe ... />
+			// 	// but <figure class="image"><iframe .../><figcaption>...</figcaption></figure> -> stays the same
 			// 	const inlineViewImages = docFragmentChildren.map( blockViewImage => {
-			// 		// If there's just one child, it can be either <img /> or <a><img></a>.
-			// 		// If there are other children than <img>, this means that the block image
+			// 		// If there's just one child, it can be either <iframe /> or <a><iframe></a>.
+			// 		// If there are other children than <iframe>, this means that the block image
 			// 		// has a caption or some other features and this kind of image should be
 			// 		// pasted/dropped without modifications.
 			// 		if ( blockViewImage.childCount === 1 ) {
-			// 			// Pass the attributes which are present only in the <figure> to the <img>
+			// 			// Pass the attributes which are present only in the <figure> to the <iframe>
 			// 			// (e.g. the style="width:10%" attribute applied by the ImageResize plugin).
 			// 			Array.from( blockViewImage.getAttributes() )
 			// 				.forEach( attribute => writer.setAttribute(

@@ -14,11 +14,11 @@ import { first } from 'ckeditor5/src/utils';
  *
  * An 'imageBlock' type (block image):
  *
- *		<figure class="image"><img></img></figure>
+ *		<figure class="image"><iframe></iframe></figure>
  *
  * An 'imageInline' type (inline image):
  *
- *		<span class="image-inline"><img></img></span>
+ *		<span class="image-inline"><iframe></iframe></span>
  *
  * Note that `alt` and `src` attributes are converted separately, so they are not included.
  *
@@ -29,7 +29,7 @@ import { first } from 'ckeditor5/src/utils';
  */
 export function createImageViewElement( writer, imageType ) {
 	console.log("create element");
-	const emptyElement = writer.createEmptyElement( 'img' );
+	const emptyElement = writer.createEmptyElement( 'iframe' );
 
 	const container = imageType === 'imageBlock' ?
 		writer.createContainerElement( 'figure', { class: 'image' } ) :
@@ -50,18 +50,18 @@ export function createImageViewElement( writer, imageType ) {
  */
 export function getImgViewElementMatcher( editor, matchImageType ) {
 	if ( editor.plugins.has( 'ImageInlineEditing' ) !== editor.plugins.has( 'ImageBlockEditing' ) ) {
-		return { name: 'img' };
+		return { name: 'iframe' };
 	}
 
 	const imageUtils = editor.plugins.get( 'ImageUtils' );
 
 	return element => {
-		// Check if view element is an `img`.
+		// Check if view element is an `iframe`.
 		if ( !imageUtils.isInlineImageView( element ) ) {
 			return null;
 		}
 
-		// The <img> can be standalone, wrapped in <figure>...</figure> (ImageBlock plugin) or
+		// The <iframe> can be standalone, wrapped in <figure>...</figure> (ImageBlock plugin) or
 		// wrapped in <figure><a>...</a></figure> (LinkImage plugin).
 		const imageType = element.findAncestor( imageUtils.isBlockImageView ) ? 'imageBlock' : 'imageInline';
 
@@ -81,12 +81,12 @@ export function getCustomViewElementMatcher( editor, matchImageType ) {
 	const imageUtils = editor.plugins.get( 'ImageUtils' );
 
 	return element => {
-		// Check if view element is an `img`.
+		// Check if view element is an `iframe`.
 		if ( !imageUtils.isInlineImageView( element ) ) {
 			return null;
 		}
 
-		// The <img> can be standalone, wrapped in <figure>...</figure> (ImageBlock plugin) or
+		// The <iframe> can be standalone, wrapped in <figure>...</figure> (ImageBlock plugin) or
 		// wrapped in <figure><a>...</a></figure> (LinkImage plugin).
 		const imageType = element.findAncestor( imageUtils.isBlockImageView ) ? 'imageBlock' : 'imageInline';
 

@@ -103,7 +103,7 @@ export default class ImageResizeEditing extends Plugin {
 	_registerConverters( imageType ) {
 		const editor = this.editor;
 
-		// Dedicated converter to propagate image's attribute to the img tag.
+		// Dedicated converter to propagate image's attribute to the iframe tag.
 		editor.conversion.for( 'downcast' ).add( dispatcher =>
 			dispatcher.on( `attribute:width:${ imageType }`, ( evt, data, conversionApi ) => {
 				if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
@@ -126,7 +126,7 @@ export default class ImageResizeEditing extends Plugin {
 		editor.conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: imageType === 'imageBlock' ? 'figure' : 'img',
+					name: imageType === 'imageBlock' ? 'figure' : 'iframe',
 					styles: {
 						width: /.+/
 					}

@@ -12,13 +12,13 @@ import { first } from 'ckeditor5/src/utils';
 /**
  * Returns a function that converts the image view representation:
  *
- *		<figure class="image"><img src="..." alt="..."></img></figure>
+ *		<figure class="image"><iframe src="..." alt="..."></iframe></figure>
  *
  * to the model representation:
  *
  *		<imageBlock src="..." alt="..."></imageBlock>
  *
- * The entire content of the `<figure>` element except the first `<img>` is being converted as children
+ * The entire content of the `<figure>` element except the first `<iframe>` is being converted as children
  * of the `<imageBlock>` model element.
  *
  * @protected
@@ -71,7 +71,7 @@ export function upcastImageFigure( imageUtils ) {
 /**
  * Returns a function that converts the image view representation:
  *
- *		<picture><source ... /><source ... />...<img ... /></picture>
+ *		<picture><source ... /><source ... />...<iframe ... /></picture>
  *
  * to the model representation as the `sources` attribute:
  *
@@ -118,22 +118,22 @@ export function upcastPicture( imageUtils ) {
 			}
 		}
 
-		const imgViewElement = imageUtils.findViewImgElement( pictureViewElement );
+		const iframeViewElement = imageUtils.findViewImgElement( pictureViewElement );
 
-		// Don't convert when a picture has no <img/> inside (it is broken).
-		if ( !imgViewElement ) {
+		// Don't convert when a picture has no <iframe/> inside (it is broken).
+		if ( !iframeViewElement ) {
 			return;
 		}
 
 		let modelImage = data.modelCursor.parent;
 
-		// - In case of an inline image (cursor parent in a <paragraph>), the <img/> must be converted right away
+		// - In case of an inline image (cursor parent in a <paragraph>), the <iframe/> must be converted right away
 		// because no converter handled it yet and otherwise there would be no model element to set the sources attribute on.
 		// - In case of a block image, the <figure class="image"> converter (in ImageBlockEditing) converts the
-		// <img/> right away on its own and the modelCursor is already inside an imageBlock and there's nothing special
+		// <iframe/> right away on its own and the modelCursor is already inside an imageBlock and there's nothing special
 		// to do here.
 		if ( !modelImage.is( 'element', 'imageBlock' ) ) {
-			const conversionResult = conversionApi.convertItem( imgViewElement, data.modelCursor );
+			const conversionResult = conversionApi.convertItem( iframeViewElement, data.modelCursor );
 
 			// Set image range as conversion result.
 			data.modelRange = conversionResult.modelRange;
@@ -181,29 +181,29 @@ export function downcastSrcsetAttribute( imageUtils, imageType ) {
 
 		const writer = conversionApi.writer;
 		const element = conversionApi.mapper.toViewElement( data.item );
-		const img = imageUtils.findViewImgElement( element );
+		const iframe = imageUtils.findViewImgElement( element );
 
 		if ( data.attributeNewValue === null ) {
 			const srcset = data.attributeOldValue;
 
 			if ( srcset.data ) {
-				writer.removeAttribute( 'srcset', img );
-				writer.removeAttribute( 'sizes', img );
+				writer.removeAttribute( 'srcset', iframe );
+				writer.removeAttribute( 'sizes', iframe );
 
 				if ( srcset.width ) {
-					writer.removeAttribute( 'width', img );
+					writer.removeAttribute( 'width', iframe );
 				}
 			}
 		} else {
 			const srcset = data.attributeNewValue;
 
 			if ( srcset.data ) {
-				writer.setAttribute( 'srcset', srcset.data, img );
+				writer.setAttribute( 'srcset', srcset.data, iframe );
 				// Always outputting `100vw`. See https://github.com/ckeditor/ckeditor5-image/issues/2.
-				writer.setAttribute( 'sizes', '100vw', img );
+				writer.setAttribute( 'sizes', '100vw', iframe );
 
 				if ( srcset.width ) {
-					writer.setAttribute( 'width', srcset.width, img );
+					writer.setAttribute( 'width', srcset.width, iframe );
 				}
 			}
 		}
@@ -211,7 +211,7 @@ export function downcastSrcsetAttribute( imageUtils, imageType ) {
 }
 
 /**
- * Converts the `source` model attribute to the `<picture><source /><source />...<img /></picture>`
+ * Converts the `source` model attribute to the `<picture><source /><source />...<iframe /></picture>`
  * view structure.
  *
  * @protected
@@ -232,7 +232,7 @@ export function downcastSourcesAttribute( imageUtils ) {
 
 		const viewWriter = conversionApi.writer;
 		const element = conversionApi.mapper.toViewElement( data.item );
-		const imgElement = imageUtils.findViewImgElement( element );
+		const iframeElement = imageUtils.findViewImgElement( element );
 
 		if ( data.attributeNewValue && data.attributeNewValue.length ) {
 			// Make sure <picture> does not break attribute elements, for instance <a> in linked images.
@@ -246,32 +246,32 @@ export function downcastSourcesAttribute( imageUtils ) {
 
 			// Collect all wrapping attribute elements.
 			const attributeElements = [];
-			let viewElement = imgElement.parent;
+			let viewElement = iframeElement.parent;
 
 			while ( viewElement && viewElement.is( 'attributeElement' ) ) {
 				const parentElement = viewElement.parent;
 
-				viewWriter.unwrap( viewWriter.createRangeOn( imgElement ), viewElement );
+				viewWriter.unwrap( viewWriter.createRangeOn( iframeElement ), viewElement );
 
 				attributeElements.unshift( viewElement );
 				viewElement = parentElement;
 			}
 
-			// Insert the picture and move img into it.
-			viewWriter.insert( viewWriter.createPositionBefore( imgElement ), pictureElement );
-			viewWriter.move( viewWriter.createRangeOn( imgElement ), viewWriter.createPositionAt( pictureElement, 'end' ) );
+			// Insert the picture and move iframe into it.
+			viewWriter.insert( viewWriter.createPositionBefore( iframeElement ), pictureElement );
+			viewWriter.move( viewWriter.createRangeOn( iframeElement ), viewWriter.createPositionAt( pictureElement, 'end' ) );
 
 			// Apply collected attribute elements over the new picture element.
 			for ( const attributeElement of attributeElements ) {
 				viewWriter.wrap( viewWriter.createRangeOn( pictureElement ), attributeElement );
 			}
 		}
-		// Both setting "sources" to an empty array and removing the attribute should unwrap the <img />.
+		// Both setting "sources" to an empty array and removing the attribute should unwrap the <iframe />.
 		// Unwrap once if the latter followed the former, though.
-		else if ( imgElement.parent.is( 'element', 'picture' ) ) {
-			const pictureElement = imgElement.parent;
+		else if ( iframeElement.parent.is( 'element', 'picture' ) ) {
+			const pictureElement = iframeElement.parent;
 
-			viewWriter.move( viewWriter.createRangeOn( imgElement ), viewWriter.createPositionBefore( pictureElement ) );
+			viewWriter.move( viewWriter.createRangeOn( iframeElement ), viewWriter.createPositionBefore( pictureElement ) );
 			viewWriter.remove( pictureElement );
 		}
 	}
@@ -298,9 +298,9 @@ export function downcastImageAttribute( imageUtils, imageType, attributeKey ) {
 
 		const viewWriter = conversionApi.writer;
 		const element = conversionApi.mapper.toViewElement( data.item );
-		const img = imageUtils.findViewImgElement( element );
+		const iframe = imageUtils.findViewImgElement( element );
 
-		viewWriter.setAttribute( data.attributeKey, data.attributeNewValue || '', img );
+		viewWriter.setAttribute( data.attributeKey, data.attributeNewValue || '', iframe );
 	}
 }
 

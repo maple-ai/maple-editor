@@ -13,14 +13,14 @@ import { WidgetResize } from 'ckeditor5/src/widget';
 import ImageLoadObserver from '../image/imageloadobserver';
 
 const RESIZABLE_IMAGES_CSS_SELECTOR =
-	'figure.image.ck-widget > img,' +
-	'figure.image.ck-widget > picture > img,' +
-	'figure.image.ck-widget > a > img,' +
-	'figure.image.ck-widget > a > picture > img,' +
-	'span.image-inline.ck-widget > img,' +
-	'span.image-inline.ck-widget > picture > img' +
-	'div.image-inline.ck-widget > img,' +
-	'div.image-inline.ck-widget > picture > img';
+	'figure.image.ck-widget > iframe,' +
+	'figure.image.ck-widget > picture > iframe,' +
+	'figure.image.ck-widget > a > iframe,' +
+	'figure.image.ck-widget > a > picture > iframe,' +
+	'span.image-inline.ck-widget > iframe,' +
+	'span.image-inline.ck-widget > picture > iframe' +
+	'div.image-inline.ck-widget > iframe,' +
+	'div.image-inline.ck-widget > picture > iframe';
 
 const IMAGE_WIDGETS_CLASSES_MATCH_REGEXP = /(image|image-inline)/;
 
@@ -102,7 +102,7 @@ export default class ImageResizeHandles extends Plugin {
 					editor,
 
 					getHandleHost( domWidgetElement ) {
-						return domWidgetElement.querySelector( 'img' );
+						return domWidgetElement.querySelector( 'iframe' );
 					},
 					getResizeHost() {
 						// Return the model image element parent to avoid setting an inline element (<a>/<span>) as a resize host.

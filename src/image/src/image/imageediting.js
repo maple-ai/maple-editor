@@ -49,21 +49,21 @@ export default class ImageEditing extends Plugin {
 		conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: 'img',
+					name: 'iframe',
 					key: 'data-type'
 				},
 				model: 'data-type'
 			} )
 			.attributeToAttribute( {
 				view: {
-					name: 'img',
+					name: 'iframe',
 					key: 'alt'
 				},
 				model: 'alt'
 			} )
 			.attributeToAttribute( {
 				view: {
-					name: 'img',
+					name: 'iframe',
 					key: 'srcset'
 				},
 				model: {

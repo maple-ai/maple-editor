@@ -17,7 +17,7 @@
 		/* Make sure the caption will be displayed properly (See: https://github.com/ckeditor/ckeditor5/issues/1870). */
 		min-width: 50px;
 
-		& img {
+		& iframe {
 			/* Prevent unnecessary margins caused by line-height (see #44). */
 			display: block;
 
@@ -34,7 +34,7 @@
 
 	& .image-inline {
 		/*
-		 * Normally, the .image-inline would have "display: inline-block" and "img { width: 100% }" (to follow the wrapper while resizing).
+		 * Normally, the .image-inline would have "display: inline-block" and "iframe { width: 100% }" (to follow the wrapper while resizing).
 		 * Unfortunately, together with "srcset", it gets automatically stretched up to the width of the editing root.
 		 * This strange behavior does not happen with inline-flex.
 		 */
@@ -42,24 +42,26 @@
 
 		/* While being resized, don't allow the image to exceed the width of the editing root. */
 		max-width: 100%;
+		padding: 20px;
 
 		/* This is required by Safari to resize images in a sensible way. Without this, the browser breaks the ratio. */
 		align-items: flex-start;
 
-		/* When the picture is present it must act as a flex container to let the img resize properly */
+		/* When the picture is present it must act as a flex container to let the iframe resize properly */
 		& picture {
 			display: flex;
 		}
 
-		/* When the picture is present, it must act like a resizable img. */
+		/* When the picture is present, it must act like a resizable iframe. */
 		& picture,
-		& img {
-			/* This is necessary for the img to span the entire .image-inline wrapper and to resize properly. */
+		& iframe {
+			/* This is necessary for the iframe to span the entire .image-inline wrapper and to resize properly. */
 			flex-grow: 1;
 			flex-shrink: 1;
 
 			/* Prevents overflowing the editing root boundaries when an inline image is very wide. */
 			max-width: 100%;
+			height: 400px;
 		}
 	}
 }
@@ -110,7 +112,7 @@
 	See https://github.com/ckeditor/ckeditor5/issues/9117. */
 	& td,
 	& th {
-		& .image-inline img {
+		& .image-inline iframe {
 			max-width: none;
 		}
 	}

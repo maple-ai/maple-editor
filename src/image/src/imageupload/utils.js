@@ -115,7 +115,7 @@ function convertLocalImageOnCanvas( imageSrc ) {
 // @returns {Promise.<Blob>}
 function getBlobFromCanvas( imageSrc ) {
 	return new Promise( ( resolve, reject ) => {
-		const image = global.document.createElement( 'img' );
+		const image = global.document.createElement( 'iframe' );
 
 		image.addEventListener( 'load', () => {
 			const canvas = global.document.createElement( 'canvas' );

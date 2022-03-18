@@ -13,7 +13,7 @@
 	display: block;
 	box-sizing: border-box;
 
-	& img {
+	& iframe {
 		/* For resized images it is the `<figure>` element that determines the image width. */
 		width: 100%;
 	}
@@ -30,7 +30,7 @@
 	See https://github.com/ckeditor/ckeditor5/issues/9117. */
 	& td,
 	& th {
-		& .image-inline.image_resized img {
+		& .image-inline.image_resized iframe {
 			max-width: 100%;
 		}
 	}

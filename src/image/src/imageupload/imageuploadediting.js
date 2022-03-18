@@ -90,7 +90,7 @@ export default class ImageUploadEditing extends Plugin {
 		conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: 'img',
+					name: 'iframe',
 					key: 'uploadId'
 				},
 				model: 'uploadId'
@@ -229,7 +229,9 @@ export default class ImageUploadEditing extends Plugin {
 			const urls = data.urls ? data.urls : data;
 
 			this.editor.model.change( writer => {
-				writer.setAttribute( 'src', urls.default, imageElement );
+				// writer.setAttribute( 'src', urls.default, imageElement );
+				writer.setAttribute( 'src', "http://localhost:54898/tag?isEdit=true&url=" + encodeURIComponent(urls.default), imageElement );
+				// writer.setAttribute( 'src', "https://tagger-sit.maple.ai/tag?isEdit=true&url=" + encodeURIComponent(urls.default), imageElement );
 				this._parseAndSetSrcsetAttributeOnImage( urls, imageElement, writer );
 			} );
 		}, { priority: 'low' } );

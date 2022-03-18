@@ -31,6 +31,7 @@ import FileDelete from './file/src/filedelete';
 // import FileUpload from './image/src/fileupload';
 import Indent from '@ckeditor/ckeditor5-indent/src/indent';
 import Link from '@ckeditor/ckeditor5-link/src/link';
+import Invite from './invite/src/invite';
 import List from '@ckeditor/ckeditor5-list/src/list';
 import MediaEmbed from '@ckeditor/ckeditor5-media-embed/src/mediaembed';
 import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
@@ -43,9 +44,9 @@ import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices'
 import HeadingButtonsUI from './heading/src/headingbuttonsui';
 import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 
-import ImageResize from './image/src/imageresize';
-import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
-import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
+// import ImageResize from './image/src/imageresize';
+// import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
+// import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
 
 import ImageTypes from './image/src/imagetypes';
 import ImageTypesEditing from './image/src/imagetypes/imagetypesediting';
@@ -101,6 +102,8 @@ InlineEditor.builtinPlugins = [
 
 	Indent,
 	Link,
+	Invite,
+
 	List,
 	MediaEmbed,
 	Paragraph,
@@ -114,9 +117,9 @@ InlineEditor.builtinPlugins = [
 	HeadingButtonsUI,
 	ParagraphButtonUI,
 	
-	ImageResize,
-	ImageResizeEditing,
-	ImageResizeHandles,
+	// ImageResize,
+	// ImageResizeEditing,
+	// ImageResizeHandles,
 
 	ImageTypes,
 	ImageTypesEditing,
@@ -164,6 +167,7 @@ InlineEditor.defaultConfig = {
 			'mediaEmbed',
 			'emoji',
 			'link',
+			'invite',
 			'|',
 			'undo',
 			'redo'
@@ -217,7 +221,7 @@ InlineEditor.defaultConfig = {
 		toolbar: [
 			'imageStyle:inline',
 			'imageStyle:wrapText',
-			'resizeImage',
+			// 'resizeImage',
 			'|',
 			'imageTextAlternative',
 			'imageDelete',

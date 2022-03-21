@@ -39,6 +39,7 @@
 		 * This strange behavior does not happen with inline-flex.
 		 */
 		display: inline-flex;
+		width: 100%;
 
 		/* While being resized, don't allow the image to exceed the width of the editing root. */
 		max-width: 100%;

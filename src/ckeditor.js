@@ -44,9 +44,9 @@ import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices'
 import HeadingButtonsUI from './heading/src/headingbuttonsui';
 import ParagraphButtonUI from '@ckeditor/ckeditor5-paragraph/src/paragraphbuttonui';
 
-// import ImageResize from './image/src/imageresize';
-// import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
-// import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
+import ImageResize from './image/src/imageresize';
+import ImageResizeEditing from './image/src/imageresize/imageresizeediting';
+import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
 
 import ImageTypes from './image/src/imagetypes';
 import ImageTypesEditing from './image/src/imagetypes/imagetypesediting';
@@ -117,9 +117,9 @@ InlineEditor.builtinPlugins = [
 	HeadingButtonsUI,
 	ParagraphButtonUI,
 	
-	// ImageResize,
-	// ImageResizeEditing,
-	// ImageResizeHandles,
+	ImageResize,
+	ImageResizeEditing,
+	ImageResizeHandles,
 
 	ImageTypes,
 	ImageTypesEditing,
@@ -221,7 +221,7 @@ InlineEditor.defaultConfig = {
 		toolbar: [
 			'imageStyle:inline',
 			'imageStyle:wrapText',
-			// 'resizeImage',
+			'resizeImage',
 			'|',
 			'imageTextAlternative',
 			'imageDelete',

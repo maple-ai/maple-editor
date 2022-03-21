@@ -238,7 +238,7 @@ export default class FileUploadEditing extends Plugin {
 				// }
 
 				// +%281%29
-				writer.setAttribute( 'src', "https://viewer-sit.maple.ai/" + url, fileElement );
+				writer.setAttribute( 'src', "https://viewer.maple.ai/" + url, fileElement );
 				console.log("writer", writer);
 				this._parseAndSetSrcsetAttributeOnFile( urls, fileElement, writer );
 			} );

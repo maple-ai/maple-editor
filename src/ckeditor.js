@@ -23,6 +23,14 @@ import ImageUpload from './image/src/imageupload';
 import ImageDelete from './image/src/imagedelete';
 import ImageType from './image/src/imagetype';
 
+import ImageStandard from './image-standard/src/image';
+import ImageStandardCaption from './image-standard/src/imagecaption';
+import ImageStandardStyle from './image-standard/src/imagestyle';
+import ImageStandardToolbar from './image-standard/src/imagetoolbar';
+import ImageStandardUpload from './image-standard/src/imageupload';
+import ImageStandardDelete from './image-standard/src/imagedelete';
+import ImageStandardType from './image-standard/src/imagetype';
+
 import File from './file/src/file';
 import FileToolbar from './file/src/filetoolbar';
 import FileUpload from './file/src/fileupload';
@@ -50,6 +58,13 @@ import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
 
 import ImageTypes from './image/src/imagetypes';
 import ImageTypesEditing from './image/src/imagetypes/imagetypesediting';
+
+import ImageStandardResize from './image-standard/src/imageresize';
+import ImageStandardResizeEditing from './image-standard/src/imageresize/imageresizeediting';
+import ImageStandardResizeHandles from './image-standard/src/imageresize/imageresizehandles';
+
+import ImageStandardTypes from './image-standard/src/imagetypes';
+import ImageStandardTypesEditing from './image-standard/src/imagetypes/imagetypesediting';
 
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
@@ -94,6 +109,13 @@ InlineEditor.builtinPlugins = [
 
 	ImageUpload,
 
+	ImageStandard,
+	ImageStandardCaption,
+	ImageStandardStyle,
+	ImageStandardToolbar,
+
+	ImageStandardUpload,
+
 	File,
 	FileToolbar,
 
@@ -120,13 +142,18 @@ InlineEditor.builtinPlugins = [
 	ImageResize,
 	ImageResizeEditing,
 	ImageResizeHandles,
-
 	ImageTypes,
 	ImageTypesEditing,
-
 	ImageDelete,
-
 	ImageType,
+
+	ImageStandardResize,
+	ImageStandardResizeEditing,
+	ImageStandardResizeHandles,
+	ImageStandardTypes,
+	ImageStandardTypesEditing,
+	ImageStandardDelete,
+	ImageStandardType,
 
 	Mention,
 

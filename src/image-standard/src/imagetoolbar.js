@@ -51,7 +51,7 @@ export default class ImageStandardToolbar extends Plugin {
 
 		widgetToolbarRepository.register( 'imageStandard', {
 			ariaLabel: t( 'ImageStandard toolbar' ),
-			items: normalizeDeclarativeConfig( editor.config.get( 'image.toolbar' ) || [] ),
+			items: normalizeDeclarativeConfig( editor.config.get( 'imageStandard.toolbar' ) || [] ),
 			getRelatedElement: selection => imageUtils.getClosestSelectedImageStandardWidget( selection )
 		} );
 	}

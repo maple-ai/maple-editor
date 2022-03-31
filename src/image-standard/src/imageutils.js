@@ -315,7 +315,7 @@ function getInsertImageStandardParent( selection, model ) {
 // @returns {'imageStandardBlock'|'imageStandardInline'} imageType
 function determineImageStandardTypeForInsertion( editor, selectable, imageType ) {
 	const schema = editor.model.schema;
-	let configImageStandardInsertType = editor.config.get( 'image.insert.type' );
+	let configImageStandardInsertType = editor.config.get( 'imageStandard.insert.type' );
 	configImageStandardInsertType = 'inline';
 
 	console.log("determineImageStandardTypeForInsertion");

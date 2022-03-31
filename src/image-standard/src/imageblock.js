@@ -10,7 +10,7 @@
 import { Plugin } from 'ckeditor5/src/core';
 import { Widget } from 'ckeditor5/src/widget';
 
-import ImageStandardTextAlternative from './imagetextalternative';
+// import ImageStandardTextAlternative from './imagetextalternative';
 import ImageStandardBlockEditing from './image/imageblockediting';
 
 import '../theme/image.css';
@@ -33,7 +33,7 @@ export default class ImageStandardBlock extends Plugin {
 	 * @inheritDoc
 	 */
 	static get requires() {
-		return [ ImageStandardBlockEditing, Widget, ImageStandardTextAlternative ];
+		return [ ImageStandardBlockEditing, Widget ];
 	}
 
 	/**

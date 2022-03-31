@@ -18,7 +18,7 @@ import { LabeledFieldView, createLabeledInputText } from 'ckeditor5/src/ui';
  * @returns {Object.<String, module:ui/view~View>} Integrations object.
  */
 export function prepareIntegrations( editor ) {
-	const panelItems = editor.config.get( 'image.insert.integrations' );
+	const panelItems = editor.config.get( 'imageStandard.insert.integrations' );
 	const imageInsertUIPlugin = editor.plugins.get( 'ImageStandardInsertUI' );
 
 	const PREDEFINED_INTEGRATIONS = {

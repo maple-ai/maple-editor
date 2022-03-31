@@ -8,8 +8,8 @@
  */
 
  import { Plugin } from 'ckeditor5/src/core';
- import ImageStandardDeleteEditing from './imagedelete/imagedeleteediting';
- import ImageStandardDeleteUI from './imagedelete/imagedeleteui';
+ import ImageStandardDeleteEditing from './imagedeletestandard/imagedeleteeditingstandard';
+ import ImageStandardDeleteUI from './imagedeletestandard/imagedeleteuistandard';
  
  /**
   * The image text alternative plugin.

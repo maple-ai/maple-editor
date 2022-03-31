@@ -49,7 +49,7 @@ export default class InsertImageStandardCommand extends Command {
 	constructor( editor ) {
 		super( editor );
 
-		let configImageStandardInsertType = editor.config.get( 'image.insert.type' );
+		let configImageStandardInsertType = editor.config.get( 'imageStandard.insert.type' );
 		configImageStandardInsertType = 'inline';
 
 		if ( !editor.plugins.has( 'ImageStandardInlineEditing' ) ) {

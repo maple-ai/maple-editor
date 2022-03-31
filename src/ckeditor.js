@@ -24,12 +24,9 @@ import ImageDelete from './image/src/imagedelete';
 import ImageType from './image/src/imagetype';
 
 import ImageStandard from './image-standard/src/image';
-import ImageStandardCaption from './image-standard/src/imagecaption';
-import ImageStandardStyle from './image-standard/src/imagestyle';
 import ImageStandardToolbar from './image-standard/src/imagetoolbar';
 import ImageStandardUpload from './image-standard/src/imageupload';
-import ImageStandardDelete from './image-standard/src/imagedelete';
-import ImageStandardType from './image-standard/src/imagetype';
+import ImageStandardDelete from './image-standard/src/imagestandarddelete';
 
 import File from './file/src/file';
 import FileToolbar from './file/src/filetoolbar';
@@ -59,13 +56,6 @@ import ImageResizeHandles from './image/src/imageresize/imageresizehandles';
 import ImageTypes from './image/src/imagetypes';
 import ImageTypesEditing from './image/src/imagetypes/imagetypesediting';
 
-import ImageStandardResize from './image-standard/src/imageresize';
-import ImageStandardResizeEditing from './image-standard/src/imageresize/imageresizeediting';
-import ImageStandardResizeHandles from './image-standard/src/imageresize/imageresizehandles';
-
-import ImageStandardTypes from './image-standard/src/imagetypes';
-import ImageStandardTypesEditing from './image-standard/src/imagetypes/imagetypesediting';
-
 import Underline from '@ckeditor/ckeditor5-basic-styles/src/underline';
 import Alignment from '@ckeditor/ckeditor5-alignment/src/alignment';
 import SimpleUploadAdapter from '@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter';
@@ -85,8 +75,6 @@ import EmojiObjects from "./emoji-objects";
 import EmojiPlaces from "./emoji-places";
 import EmojiSymbols from "./emoji-symbols";
 import EmojiFlags from "./emoji-flags";
-
-import { icons } from 'ckeditor5/src/core';
 
 export default class InlineEditor extends InlineEditorBase {}
 
@@ -110,11 +98,11 @@ InlineEditor.builtinPlugins = [
 	ImageUpload,
 
 	ImageStandard,
-	ImageStandardCaption,
-	ImageStandardStyle,
 	ImageStandardToolbar,
 
 	ImageStandardUpload,
+
+	ImageStandardDelete,
 
 	File,
 	FileToolbar,
@@ -146,14 +134,6 @@ InlineEditor.builtinPlugins = [
 	ImageTypesEditing,
 	ImageDelete,
 	ImageType,
-
-	ImageStandardResize,
-	ImageStandardResizeEditing,
-	ImageStandardResizeHandles,
-	ImageStandardTypes,
-	ImageStandardTypesEditing,
-	ImageStandardDelete,
-	ImageStandardType,
 
 	Mention,
 
@@ -205,6 +185,13 @@ InlineEditor.defaultConfig = {
 			'fileDelete',
 		],
 	},
+
+	imageStandard: {
+		toolbar: [
+			'imageStandardDelete',
+		],
+	},
+
 	image: {
 		resizeOptions: [
 			{

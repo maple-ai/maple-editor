@@ -38,7 +38,7 @@ export default class ImageStandardUploadUI extends Plugin {
 		const componentCreator = locale => {
 			const view = new FileDialogButtonView( locale );
 			const command = editor.commands.get( 'uploadImageStandard' );
-			const imageTypes = editor.config.get( 'image.upload.types' );
+			const imageTypes = editor.config.get( 'imageStandard.upload.types' );
 			const imageTypesRegExp = createImageStandardTypeRegExp( imageTypes );
 
 			view.set( {

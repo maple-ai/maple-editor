@@ -79,7 +79,7 @@ export default class ImageStandardUploadEditing extends Plugin {
 		const conversion = editor.conversion;
 		const fileRepository = editor.plugins.get( FileRepository );
 		const imageUtils = editor.plugins.get( 'ImageStandardUtils' );
-		const imageTypes = createImageStandardTypeRegExp( editor.config.get( 'image.upload.types' ) );
+		const imageTypes = createImageStandardTypeRegExp( editor.config.get( 'imageStandard.upload.types' ) );
 		const uploadImageStandardCommand = new UploadImageStandardCommand( editor );
 
 		// Register `uploadImageStandard` command and add `imageStandardUpload` command as an alias for backward compatibility.

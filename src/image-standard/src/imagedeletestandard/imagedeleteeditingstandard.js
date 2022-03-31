@@ -4,21 +4,21 @@
  */
 
 /**
- * @module image/imagetextalternative/imagetextalternativeediting
+ * @module image/imagedelete/imagedeleteediting
  */
 
 import { Plugin } from 'ckeditor5/src/core';
-import ImageStandardTextAlternativeCommand from './imagetextalternativecommand';
+import ImageStandardDeleteCommand from './imagedeletecommandstandard';
 import ImageStandardUtils from '../imageutils';
 
 /**
  * The image text alternative editing plugin.
  *
- * Registers the `'imageTextAlternative'` command.
+ * Registers the `'ImageStandardDelete'` command.
  *
  * @extends module:core/plugin~Plugin
  */
-export default class ImageStandardTextAlternativeEditing extends Plugin {
+export default class ImageStandardDeleteEditing extends Plugin {
 	/**
 	 * @inheritDoc
 	 */
@@ -30,13 +30,13 @@ export default class ImageStandardTextAlternativeEditing extends Plugin {
 	 * @inheritDoc
 	 */
 	static get pluginName() {
-		return 'ImageStandardTextAlternativeEditing';
+		return 'ImageStandardDeleteEditing';
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	init() {
-		this.editor.commands.add( 'imageTextAlternative', new ImageStandardTextAlternativeCommand( this.editor ) );
+		this.editor.commands.add( 'ImageStandardDelete', new ImageStandardDeleteCommand( this.editor ) );
 	}
 }

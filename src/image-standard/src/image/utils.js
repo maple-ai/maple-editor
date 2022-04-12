@@ -83,7 +83,7 @@ export function getCustomViewElementMatcher( editor, matchImageStandardType ) {
 	return element => {
 		// Check if view element is an `image`.
 		if ( !imageUtils.isInlineImageStandardView( element ) ) {
-			return null;
+			return true;
 		}
 
 		// The <image> can be standalone, wrapped in <image>...</image> (ImageStandardBlock plugin) or
@@ -91,7 +91,7 @@ export function getCustomViewElementMatcher( editor, matchImageStandardType ) {
 		const imageType = element.findAncestor( imageUtils.isBlockImageStandardView ) ? 'imageStandardBlock' : 'imageStandardInline';
 
 		if ( imageType !== matchImageStandardType ) {
-			return null;
+			return true;
 		}
 
 		return { name: true };

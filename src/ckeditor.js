@@ -170,6 +170,7 @@ InlineEditor.defaultConfig = {
 			'|',
 			'blockQuote',
 			'uploadImage',
+			'uploadImageStandard',
 			'uploadFile',
 			'mediaEmbed',
 			'emoji',

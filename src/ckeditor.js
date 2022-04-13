@@ -252,8 +252,8 @@ InlineEditor.defaultConfig = {
 			'resizeImage',
 			'|',
 			'imageTextAlternative',
-			'imageDelete',
-			'imageTypes'
+			'imageTypes',
+			'imageDelete'
 		],
 	},
 

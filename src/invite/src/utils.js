@@ -168,7 +168,7 @@ export function isEmail( value ) {
  * @returns {Boolean}
  */
 export function addInviteProtocolIfApplicable( invite, defaultProtocol ) {
-	const protocol = isEmail( invite ) ? 'mailto:' : defaultProtocol;
+	const protocol = isEmail( invite ) ? '' : defaultProtocol;
 	const isProtocolNeeded = !!protocol && !PROTOCOL_REG_EXP.test( invite );
 
 	return invite && isProtocolNeeded ? protocol + invite : invite;

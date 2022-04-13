@@ -160,7 +160,9 @@ function _showPlaceholder( fileUtils, placeholder, viewFigure, writer ) {
 	const viewImg = fileUtils.findViewImgElement( viewFigure );
 
 	if ( viewImg.getAttribute( 'src' ) !== placeholder ) {
-		writer.setAttribute( 'src', placeholder, viewImg );
+		console.log("viewImg", viewImg);
+		console.log("placeholder", placeholder);
+		// writer.setAttribute( 'src', placeholder, viewImg );
 	}
 
 	if ( !_getUIElement( viewFigure, 'placeholder' ) ) {
@@ -287,6 +289,6 @@ function _displayLocalFile( fileUtils, viewFigure, writer, loader ) {
 	if ( loader.data ) {
 		const viewImg = fileUtils.findViewImgElement( viewFigure );
 
-		writer.setAttribute( 'src', loader.data, viewImg );
+		// writer.setAttribute( 'src', loader.data, viewImg );
 	}
 }

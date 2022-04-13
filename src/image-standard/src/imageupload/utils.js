@@ -115,7 +115,7 @@ function convertLocalImageStandardOnCanvas( imageSrc ) {
 // @returns {Promise.<Blob>}
 function getBlobFromCanvas( imageSrc ) {
 	return new Promise( ( resolve, reject ) => {
-		const image = global.document.createElement( 'image' );
+		const image = global.document.createElement( 'img' );
 
 		image.addEventListener( 'load', () => {
 			const canvas = global.document.createElement( 'canvas' );

@@ -172,7 +172,7 @@ export default class ImageStandardBlockEditing extends Plugin {
 
 				// Wrap <image ... /> -> <image class="image"><image .../></image>
 				const blockViewImageStandards = docFragmentChildren.map(
-					inlineViewImageStandard => writer.createElement( 'image', { class: 'imageStandard' }, inlineViewImageStandard )
+					inlineViewImageStandard => writer.createElement( 'img', { class: 'imageStandard' }, inlineViewImageStandard )
 				);
 
 				data.content = writer.createDocumentFragment( blockViewImageStandards );

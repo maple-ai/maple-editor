@@ -43,7 +43,7 @@ export default class ImageStandardUtils extends Plugin {
 	 * @returns {Boolean}
 	 */
 	isInlineImageStandardView( element ) {
-		return !!element && element.is( 'element', 'image' );
+		return !!element && element.is( 'element', 'img' );
 	}
 
 	/**
@@ -55,7 +55,7 @@ export default class ImageStandardUtils extends Plugin {
 	 * @returns {Boolean}
 	 */
 	isBlockImageStandardView( element ) {
-		return !!element && element.is( 'element', 'image' ) && element.hasClass( 'imageStandard' );
+		return !!element && element.is( 'element', 'img' ) && element.hasClass( 'imageStandard' );
 	}
 
 	/**

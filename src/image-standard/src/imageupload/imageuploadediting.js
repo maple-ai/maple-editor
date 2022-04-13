@@ -90,7 +90,7 @@ export default class ImageStandardUploadEditing extends Plugin {
 		conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: 'image',
+					name: 'img',
 					key: 'uploadId'
 				},
 				model: 'uploadId'

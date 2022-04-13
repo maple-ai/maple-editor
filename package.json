@@ -1,6 +1,6 @@
 {
   "name": "maple-editor",
-  "version": "1.2.5",
+  "version": "1.2.8",
   "description": "The inline editor build of CKEditor 5 – the best browser-based rich text editor.",
   "keywords": [
     "ckeditor5-build",
@@ -37,6 +37,7 @@
     "@ckeditor/ckeditor5-editor-inline": "^32.0.0",
     "@ckeditor/ckeditor5-essentials": "^32.0.0",
     "@ckeditor/ckeditor5-heading": "^32.0.0",
+
     "@ckeditor/ckeditor5-image": "^32.0.0",
     "@ckeditor/ckeditor5-indent": "^32.0.0",
     "@ckeditor/ckeditor5-link": "^32.0.0",

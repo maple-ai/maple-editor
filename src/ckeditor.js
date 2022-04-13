@@ -43,6 +43,8 @@ import Paragraph from '@ckeditor/ckeditor5-paragraph/src/paragraph';
 import PasteFromOffice from '@ckeditor/ckeditor5-paste-from-office/src/pastefromoffice';
 import Table from '@ckeditor/ckeditor5-table/src/table';
 import TableToolbar from '@ckeditor/ckeditor5-table/src/tabletoolbar';
+import TableProperties from '@ckeditor/ckeditor5-table/src/tableproperties';
+import TableCellProperties from '@ckeditor/ckeditor5-table/src/tablecellproperties';
 import TextTransformation from '@ckeditor/ckeditor5-typing/src/texttransformation';
 import CloudServices from '@ckeditor/ckeditor5-cloud-services/src/cloudservices';
 
@@ -76,10 +78,18 @@ import EmojiPlaces from "./emoji-places";
 import EmojiSymbols from "./emoji-symbols";
 import EmojiFlags from "./emoji-flags";
 
+import MentionTagging from './mentiontagging/src/horizontalline';
+import Tagging from './tagging/src/horizontalline';
+// import MentionTagging from '@ckeditor/ckeditor5-horizontal-line/src/horizontalline';
+
+
 export default class InlineEditor extends InlineEditorBase {}
 
 // Plugins to include in the build.
 InlineEditor.builtinPlugins = [
+	MentionTagging,
+	Tagging,
+
 	Essentials,
 	UploadAdapter,
 	Autoformat,
@@ -120,6 +130,8 @@ InlineEditor.builtinPlugins = [
 	PasteFromOffice,
 	Table,
 	TableToolbar,
+	TableProperties, 
+	TableCellProperties,
 	TextTransformation,
 
 	TodoList,
@@ -162,6 +174,8 @@ InlineEditor.defaultConfig = {
 			'italic',
 			'underline',
 			'alignment',
+			'mentionTagging',
+			'tagging',
 			'|',
 			'todoList',
 			'bulletedList',
@@ -170,7 +184,6 @@ InlineEditor.defaultConfig = {
 			'|',
 			'blockQuote',
 			'uploadImage',
-			'uploadImageStandard',
 			'uploadFile',
 			'mediaEmbed',
 			'emoji',
@@ -246,10 +259,20 @@ InlineEditor.defaultConfig = {
 
 	table: {
 		contentToolbar: [
-			'tableColumn',
-			'tableRow',
-			'mergeTableCells'
-		]
+			'tableColumn', 
+			'tableRow', 
+			'mergeTableCells',
+			'tableProperties', 
+			'tableCellProperties'
+		],
+
+		tableProperties: {
+			// ...
+		},
+
+		tableCellProperties: {
+			// ...
+		}
 	},
 	simpleUpload: {
 		uploadUrl: 'http://localhost:2000/api/v1/upload',

@@ -49,21 +49,21 @@ export default class ImageStandardEditing extends Plugin {
 		conversion.for( 'upcast' )
 			.attributeToAttribute( {
 				view: {
-					name: 'image',
+					name: 'img',
 					key: 'data-type'
 				},
 				model: 'data-type'
 			} )
 			.attributeToAttribute( {
 				view: {
-					name: 'image',
+					name: 'img',
 					key: 'alt'
 				},
 				model: 'alt'
 			} )
 			.attributeToAttribute( {
 				view: {
-					name: 'image',
+					name: 'img',
 					key: 'srcset'
 				},
 				model: {

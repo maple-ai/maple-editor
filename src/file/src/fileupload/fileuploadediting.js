@@ -157,6 +157,7 @@ export default class FileUploadEditing extends Plugin {
 				const loader = fileRepository.createLoader( fetchableFile.promise );
 
 				if ( loader ) {
+					// writer.setAttribute( 'src', "https://viewer.maple.haus/" + fetchableFile.fileElement );
 					writer.setAttribute( 'src', '', fetchableFile.fileElement );
 					writer.setAttribute( 'uploadId', loader.id, fetchableFile.fileElement );
 				}

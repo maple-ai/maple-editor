@@ -103,7 +103,7 @@ export default class ImageStandardInlineEditing extends Plugin {
 		conversion.for( 'dataDowncast' )
 			.elementToElement( {
 				model: 'imageStandardInline',
-				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'image' )
+				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'img' )
 			} ).elementToElement( {
 				model: 'imageStandardInline',
 				view: ( modelElement, { writer } ) => writer.createEmptyElement( 'custom' )

@@ -29,10 +29,10 @@ import { first } from 'ckeditor5/src/utils';
  */
 export function createImageStandardViewElement( writer, imageType ) {
 	console.log("create element");
-	const emptyElement = writer.createEmptyElement( 'image' );
+	const emptyElement = writer.createEmptyElement( 'img' );
 
 	const container = imageType === 'imageStandardBlock' ?
-		writer.createContainerElement( 'image', { class: 'imageStandard' } ) :
+		writer.createContainerElement( 'img', { class: 'imageStandard' } ) :
 		writer.createContainerElement( 'span', { class: 'image-inline' }, { isAllowedInsideAttributeElement: true } );
 
 	writer.insert( writer.createPositionAt( container, 0 ), emptyElement );
@@ -50,7 +50,7 @@ export function createImageStandardViewElement( writer, imageType ) {
  */
 export function getImgViewElementMatcher( editor, matchImageStandardType ) {
 	if ( editor.plugins.has( 'ImageStandardInlineEditing' ) !== editor.plugins.has( 'ImageStandardBlockEditing' ) ) {
-		return { name: 'image' };
+		return { name: 'img' };
 	}
 
 	const imageUtils = editor.plugins.get( 'ImageStandardUtils' );
@@ -83,7 +83,7 @@ export function getCustomViewElementMatcher( editor, matchImageStandardType ) {
 	return element => {
 		// Check if view element is an `image`.
 		if ( !imageUtils.isInlineImageStandardView( element ) ) {
-			return true;
+			return null;
 		}
 
 		// The <image> can be standalone, wrapped in <image>...</image> (ImageStandardBlock plugin) or
@@ -91,7 +91,7 @@ export function getCustomViewElementMatcher( editor, matchImageStandardType ) {
 		const imageType = element.findAncestor( imageUtils.isBlockImageStandardView ) ? 'imageStandardBlock' : 'imageStandardInline';
 
 		if ( imageType !== matchImageStandardType ) {
-			return true;
+			return null;
 		}
 
 		return { name: true };

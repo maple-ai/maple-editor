@@ -64,7 +64,7 @@
 
 			/* Prevents overflowing the editing root boundaries when an inline file is very wide. */
 			max-width: 100%;
-			min-height: 400px;
+			min-height: 500px;
 			height: 100%;
 		}
 	}

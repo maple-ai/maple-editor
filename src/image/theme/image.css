@@ -62,7 +62,7 @@
 
 			/* Prevents overflowing the editing root boundaries when an inline image is very wide. */
 			max-width: 100%;
-			height: 400px;
+			height: 500px;
 		}
 	}
 }

@@ -115,6 +115,10 @@ export default class ImageUtils extends Plugin {
 
 			model.insertContent( imageElement, selectable );
 
+			const position = selection.getFirstPosition();
+			const { end: positionAfter } = model.insertContent( writer.createText( ' ' ), position );
+			writer.setSelection( positionAfter );
+			
 			// Inserting an image might've failed due to schema regulations.
 			if ( imageElement.parent ) {
 				writer.setSelection( imageElement, 'on' );

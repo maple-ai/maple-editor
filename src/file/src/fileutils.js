@@ -81,7 +81,7 @@ export default class FileUtils extends Plugin {
 	 */
 
 	 insertFile( attributes = {}, selectable = null, fileType = null ) {
-		console.log("insertFile");
+		console.log("insertFile2");
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -124,6 +124,15 @@ export default class FileUtils extends Plugin {
 
 			const fileElement2 = writer.createElement( 'fileInline', attributes );
 			model.insertContent( fileElement2, selectable );
+			console.log("TES1");
+
+			const position = selection.getFirstPosition();
+			console.log("TES2");
+			console.log("position", position);
+
+			const { end: positionAfter } = model.insertContent( writer.createText( ' ' ), position );
+			writer.setSelection( positionAfter );
+			console.log("ADDEDSOACE");
 
 			// const emptyElement = writer.createEmptyElement( 'iframe' );
 			// writer.createContainerElement( 'span', { class: 'file-inline' }, { isAllowedInsideAttributeElement: true } );
@@ -142,7 +151,7 @@ export default class FileUtils extends Plugin {
 
 
 	insertFile( attributes = {}, selectable = null, fileType = null ) {
-		console.log("insertFile");
+		console.log("insertFile2");
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -176,6 +185,10 @@ export default class FileUtils extends Plugin {
 
 			model.insertContent( fileElement, selectable );
 
+			const position = selection.getFirstPosition();
+			const { end: positionAfter } = model.insertContent( writer.createText( ' ' ), position );
+			writer.setSelection( positionAfter );
+			
 			// Inserting an file might've failed due to schema regulations.
 			if ( fileElement.parent ) {
 				writer.setSelection( fileElement, 'on' );

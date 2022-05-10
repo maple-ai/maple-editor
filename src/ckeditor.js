@@ -266,9 +266,9 @@ InlineEditor.defaultConfig = {
 			'tableCellProperties'
 		],
 
-		tableProperties: {
-			// ...
-		},
+		tableProperties: [
+			'tableAlignment'
+		],
 
 		tableCellProperties: {
 			// ...

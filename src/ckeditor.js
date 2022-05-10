@@ -175,6 +175,7 @@ InlineEditor.defaultConfig = {
 			'underline',
 			'alignment',
 			'mentionTagging',
+			'invite',
 			'tagging',
 			'|',
 			'todoList',
@@ -188,7 +189,6 @@ InlineEditor.defaultConfig = {
 			'mediaEmbed',
 			'emoji',
 			'link',
-			'invite',
 			'|',
 			'undo',
 			'redo'

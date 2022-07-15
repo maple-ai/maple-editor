@@ -160,8 +160,8 @@ function _showPlaceholder( fileUtils, placeholder, viewFigure, writer ) {
 	const viewImg = fileUtils.findViewImgElement( viewFigure );
 
 	if ( viewImg.getAttribute( 'src' ) !== placeholder ) {
-		console.log("viewImg", viewImg);
-		console.log("placeholder", placeholder);
+		
+		
 		// writer.setAttribute( 'src', placeholder, viewImg );
 	}
 

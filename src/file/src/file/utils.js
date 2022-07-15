@@ -28,7 +28,7 @@ import { first } from 'ckeditor5/src/utils';
  * @returns {module:engine/view/containerelement~ContainerElement}
  */
 export function createFileViewElement( writer, fileType ) {
-	console.log("create element");
+	
 	const emptyElement = writer.createEmptyElement( 'iframe' );
 
 	const container = fileType === 'fileBlock' ?

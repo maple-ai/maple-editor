@@ -28,7 +28,7 @@ import { first } from 'ckeditor5/src/utils';
  * @returns {module:engine/view/containerelement~ContainerElement}
  */
 export function createImageStandardViewElement( writer, imageType ) {
-	console.log("create element");
+	
 	const emptyElement = writer.createEmptyElement( 'img' );
 
 	const container = imageType === 'imageStandardBlock' ?

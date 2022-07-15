@@ -234,13 +234,13 @@ export default class FileUploadEditing extends Plugin {
 				let url = urls.default;
 				// if (url) {
 				// 	url = url.slice(0, -12);
-				// 	console.log("uploadComplete", urls.default)
-				// 	console.log("uploadComplete", url)
+				// 	
+				// 	
 				// }
 
 				// +%281%29
 				writer.setAttribute( 'src', "https://viewer.maple.haus/" + url, fileElement );
-				console.log("writer", writer);
+				
 				this._parseAndSetSrcsetAttributeOnFile( urls, fileElement, writer );
 			} );
 		}, { priority: 'low' } );

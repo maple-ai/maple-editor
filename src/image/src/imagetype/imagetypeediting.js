@@ -106,7 +106,7 @@ export default class ImageTypeEditing extends Plugin {
 			model: 'caption',
 			view: ( modelElement, { writer } ) => {
 				if ( !imageUtils.isBlockImage( modelElement.parent ) ) {
-					console.log("IS RETURN");
+					
 					// return null;
 				}
 
@@ -119,7 +119,7 @@ export default class ImageTypeEditing extends Plugin {
 			model: 'caption',
 			view: ( modelElement, { writer } ) => {
 				if ( !imageUtils.isBlockImage( modelElement.parent ) ) {
-					console.log("IS RETURN2");
+					
 					// return null;
 				}
 
@@ -266,8 +266,8 @@ function mapModelPositionToView( editingView ) {
 
 		return;
 		// const viewElement = data.mapper.toViewElement( parent );
-		// console.log("viewElement", viewElement);
-		// console.log("data.viewPosition", data);
+		// 
+		// 
 
 		// // // The "iframe" element is inserted by ImageBlockEditing during the downcast conversion via
 		// // an explicit view position so the "0" position does not need any mapping.

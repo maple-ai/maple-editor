@@ -134,7 +134,7 @@ export default class FileInsertUI extends Plugin {
 		} );
 
 		function onSubmit() {
-			console.log("onSubmit");
+			
 			const selectedElement = editor.model.document.selection.getSelectedElement();
 
 			if ( fileUtils.isFile( selectedElement ) ) {

@@ -16,7 +16,7 @@ import { global } from 'ckeditor5/src/utils';
  *
  *		const fileType = createFileTypeRegExp( [ 'png', 'jpeg', 'svg+xml', 'vnd.microsoft.icon' ] );
  *
- *		console.log( 'is supported file', fileType.test( file.type ) );
+ *		
  *
  * @param {Array.<String>} types
  * @returns {RegExp}
@@ -37,7 +37,7 @@ export function createFileTypeRegExp( types ) {
  */
 export function fetchLocalFile( file ) {
 	return new Promise( ( resolve, reject ) => {
-		console.log("fetchLocalFile");
+		
 		const fileSrc = file.getAttribute( 'src' );
 
 		// Fetch works asynchronously and so does not block browser UI when processing data.

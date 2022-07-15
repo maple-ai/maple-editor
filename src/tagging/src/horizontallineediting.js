@@ -51,7 +51,7 @@ export default class TaggingEditing extends Plugin {
 			model: 'tagging',
 			view: ( modelElement, { writer } ) => {
 
-				console.log("EDITING");
+				
 				const label = t( 'Tag' );
 
 				const viewWrapper = writer.createContainerElement( 'div', null,

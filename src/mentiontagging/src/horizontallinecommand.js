@@ -41,10 +41,10 @@ export default class MentionTaggingCommand extends Command {
 		model.change( writer => {
 
 			const horizontalElement = writer.createElement( 'mentionTagging' );
-			console.log("horizontalElement", horizontalElement);
-			console.log("selection", selection);
+			
+			
 			const position = selection.getFirstPosition();
-			console.log("position", position);
+			
 
 			const { end: positionAfter } = model.insertContent( writer.createText( '@' ), position );
 

@@ -109,9 +109,9 @@ export default class UploadFileCommand extends Command {
 			return;
 		}
 
-		console.log("_uploadFile", attributes);
-		console.log("_uploadFile", loader);
-		console.log("_uploadFile", position);
+		
+		
+		
 		fileUtils.insertFile( { ...attributes, uploadId: loader.id }, position );
 	}
 }

@@ -226,7 +226,7 @@ export function downcastSourcesAttribute( fileUtils ) {
 	};
 
 	function converter( evt, data, conversionApi ) {
-		console.log("fileInline");
+		
 		if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
 			return;
 		}

@@ -94,7 +94,7 @@ export default class ImageInlineEditing extends Plugin {
 	 * @private
 	 */
 	_setupConversion() {
-		console.log("imageInline");
+		
 		const editor = this.editor;
 		const t = editor.t;
 		const conversion = editor.conversion;

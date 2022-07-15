@@ -81,7 +81,7 @@ export default class FileUtils extends Plugin {
 	 */
 
 	 insertFile( attributes = {}, selectable = null, fileType = null ) {
-		console.log("insertFile2");
+		
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -104,8 +104,8 @@ export default class FileUtils extends Plugin {
 
 		return model.change( writer => {
 			// const fileElement = writer.createElement( fileType, attributes );
-			// console.log("fileElement", fileElement);
-			// console.log("fileType", fileType);
+			// 
+			// 
 
 			// If we want to insert a block file (for whatever reason) then we don't want to split text blocks.
 			// This applies only when we don't have the selectable specified (i.e., we insert multiple block files at once).
@@ -116,7 +116,7 @@ export default class FileUtils extends Plugin {
 			// model.insertContent( fileElement, selectable );
 
 
-			console.log("attributes", attributes);
+			
 
 			// const fileElement = writer.createElement( 'fileBlock', attributes );
 			// model.insertContent( fileElement, selectable );
@@ -124,15 +124,15 @@ export default class FileUtils extends Plugin {
 
 			const fileElement2 = writer.createElement( 'fileInline', attributes );
 			model.insertContent( fileElement2, selectable );
-			console.log("TES1");
+			
 
 			const position = selection.getFirstPosition();
-			console.log("TES2");
-			console.log("position", position);
+			
+			
 
 			const { end: positionAfter } = model.insertContent( writer.createText( ' ' ), position );
 			writer.setSelection( positionAfter );
-			console.log("ADDEDSOACE");
+			
 
 			// const emptyElement = writer.createEmptyElement( 'iframe' );
 			// writer.createContainerElement( 'span', { class: 'file-inline' }, { isAllowedInsideAttributeElement: true } );
@@ -151,7 +151,7 @@ export default class FileUtils extends Plugin {
 
 
 	insertFile( attributes = {}, selectable = null, fileType = null ) {
-		console.log("insertFile2");
+		
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -172,7 +172,7 @@ export default class FileUtils extends Plugin {
 			}
 		}
 
-		console.log("attributes", attributes);
+		
 		
 		return model.change( writer => {
 			const fileElement = writer.createElement( fileType, attributes );
@@ -392,7 +392,7 @@ function determineFileTypeForInsertion( editor, selectable, fileType ) {
 	let configFileInsertType = editor.config.get( 'file.insert.type' );
 	configFileInsertType = 'inline';
 
-	console.log("determineFileTypeForInsertion");
+	
 	if ( !editor.plugins.has( 'FileInlineEditing' ) ) {
 		return 'fileBlock';
 	}
@@ -426,7 +426,7 @@ function determinFileTypeForInsertion( editor, selectable, fileType ) {
 	let configFileInsertType = editor.config.get( 'file.insert.type' );
 	configFileInsertType = 'inline';
 
-	console.log("determineFileTypeForInsertion");
+	
 
 	if ( editor.plugins.has( 'FileInlineEditing' ) ) {
 		return 'fileInline';

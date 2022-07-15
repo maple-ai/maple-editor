@@ -28,7 +28,7 @@ import { first } from 'ckeditor5/src/utils';
  * @returns {module:engine/view/containerelement~ContainerElement}
  */
 export function createImageViewElement( writer, imageType ) {
-	console.log("create element");
+	
 	const emptyElement = writer.createEmptyElement( 'iframe' );
 
 	const container = imageType === 'imageBlock' ?

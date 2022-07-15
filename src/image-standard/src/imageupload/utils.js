@@ -16,7 +16,7 @@ import { global } from 'ckeditor5/src/utils';
  *
  *		const imageType = createImageStandardTypeRegExp( [ 'png', 'jpeg', 'svg+xml', 'vnd.microsoft.icon' ] );
  *
- *		console.log( 'is supported image', imageType.test( file.type ) );
+ *		
  *
  * @param {Array.<String>} types
  * @returns {RegExp}

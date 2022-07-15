@@ -229,7 +229,7 @@ export default class ImageStandardUploadEditing extends Plugin {
 			const urls = data.urls ? data.urls : data;
 
 			this.editor.model.change( writer => {
-				console.log("urls.default", urls.default);
+				
 				writer.setAttribute( 'src', urls.default, imageElement );
 				this._parseAndSetSrcsetAttributeOnImageStandard( urls, imageElement, writer );
 			} );

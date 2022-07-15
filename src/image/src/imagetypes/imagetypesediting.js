@@ -104,14 +104,14 @@ export default class ImageTypesEditing extends Plugin {
 
 		editor.conversion.for( 'downcast' ).add( dispatcher =>
 			dispatcher.on( `attribute:type:${ imageType }`, ( evt, data, conversionApi ) => {
-				console.log("downcast", evt);
-				console.log("downcast", data);
+				
+				
 				if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
 					return;
 				}
 
 				const viewWriter = conversionApi.writer;
-				console.log("viewWriter", viewWriter);
+				
 				const figure = conversionApi.mapper.toViewElement( data.item );
 				const imageUtils = editor.plugins.get( 'ImageUtils' );
 				const viewImg = imageUtils.findViewImgElement( figure );

@@ -61,7 +61,7 @@ export default class ResizeImageCommand extends Command {
 
 		if ( imageElement ) {
 			model.change( writer => {
-				console.log("options.type", options);
+				
 				writer.setAttribute( 'type', options.type, imageElement );
 				writer.setAttribute( 'data-type', options.type, imageElement );
 				// const newCaptionElement = writer.createElement( 'caption' );

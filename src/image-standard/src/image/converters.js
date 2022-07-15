@@ -225,7 +225,7 @@ export function downcastSourcesAttribute( imageUtils ) {
 	};
 
 	function converter( evt, data, conversionApi ) {
-		console.log("imageStandardInline");
+		
 		if ( !conversionApi.consumable.consume( data.item, evt.name ) ) {
 			return;
 		}

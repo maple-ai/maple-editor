@@ -81,7 +81,7 @@ export default class ImageStandardUtils extends Plugin {
 	 */
 
 	insertImageStandard( attributes = {}, selectable = null, imageType = null ) {
-		console.log("insertImageStandard");
+		
 		const editor = this.editor;
 		const model = editor.model;
 		const selection = model.document.selection;
@@ -102,7 +102,7 @@ export default class ImageStandardUtils extends Plugin {
 			}
 		}
 
-		console.log("attributes", attributes);
+		
 		
 		return model.change( writer => {
 			const imageElement = writer.createElement( imageType, attributes );
@@ -322,7 +322,7 @@ function determineImageStandardTypeForInsertion( editor, selectable, imageType )
 	let configImageStandardInsertType = editor.config.get( 'imageStandard.insert.type' );
 	configImageStandardInsertType = 'inline';
 
-	console.log("determineImageStandardTypeForInsertion");
+	
 	if ( !editor.plugins.has( 'ImageStandardInlineEditing' ) ) {
 		return 'imageStandardBlock';
 	}

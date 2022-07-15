@@ -51,7 +51,7 @@ export default class MentionTaggingEditing extends Plugin {
 			model: 'mentionTagging',
 			view: ( modelElement, { writer } ) => {
 
-				console.log("EDITING");
+				
 				const label = t( 'Mention' );
 
 				const viewWrapper = writer.createContainerElement( 'div', null,

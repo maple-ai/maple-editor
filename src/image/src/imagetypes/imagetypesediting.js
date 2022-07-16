@@ -77,7 +77,7 @@ export default class ImageTypesEditing extends Plugin {
 
 		// Register `imageTypes` command and add `imageResize` command as an alias for backward compatibility.
 		editor.commands.add( 'imageTypes', imageTypesCommand );
-		// editor.commands.add( 'imageResize', imageTypesCommand );
+		editor.commands.add( 'imageResize', imageTypesCommand );
 	}
 
 	/**

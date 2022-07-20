@@ -240,6 +240,8 @@ export default class FileUploadEditing extends Plugin {
 
 				// +%281%29
 				writer.setAttribute( 'src', "https://viewer.maple.haus/" + url, fileElement );
+				writer.setAttribute( 'allowfullscreen', "", fileElement );
+				writer.setAttribute( 'allowtransparency', "", fileElement );
 				
 				this._parseAndSetSrcsetAttributeOnFile( urls, fileElement, writer );
 			} );

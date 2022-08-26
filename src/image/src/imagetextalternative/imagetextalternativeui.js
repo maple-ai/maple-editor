@@ -69,9 +69,11 @@ export default class ImageTextAlternativeUI extends Plugin {
 			const view = new ButtonView( locale );
 
 			view.set( {
-				label: t( 'Change image text alternative' ),
-				icon: altIcon,
-				tooltip: true
+				// label: t( 'Change image text alternative' ),
+				icon: icons.lowVision,
+				// tooltip: true,
+				label: t( 'Alt image' ),
+				withText: true
 			} );
 
 			view.bind( 'isEnabled' ).to( command, 'isEnabled' );

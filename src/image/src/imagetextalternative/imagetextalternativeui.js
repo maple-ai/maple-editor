@@ -12,6 +12,7 @@ import { ButtonView, ContextualBalloon, clickOutsideHandler } from 'ckeditor5/sr
 
 import TextAlternativeFormView from './ui/textalternativeformview';
 import { repositionContextualBalloon, getBalloonPositionData } from '../image/ui/utils';
+import altIcon from '../icons/alt.svg';
 
 /**
  * The image text alternative UI plugin.
@@ -69,7 +70,7 @@ export default class ImageTextAlternativeUI extends Plugin {
 
 			view.set( {
 				label: t( 'Change image text alternative' ),
-				icon: icons.lowVision,
+				icon: altIcon,
 				tooltip: true
 			} );
 
